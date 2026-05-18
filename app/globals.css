@@ -9,6 +9,13 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    min-height: 100vh;
+    background:
+      radial-gradient(60% 50% at 50% 8%, var(--bg-peach) 0%, transparent 60%),
+      radial-gradient(50% 50% at 15% 70%, var(--bg-lilac) 0%, transparent 55%),
+      radial-gradient(50% 50% at 85% 70%, var(--bg-rose) 0%, transparent 55%),
+      linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    background-attachment: fixed;
   }
 }

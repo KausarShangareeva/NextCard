@@ -55,6 +55,24 @@
   --shadow-purple: 108, 55, 160;
   --success-rgb:   16, 185, 129;
   --success-deep:  #065f46;
+
+  /* ── icon palettes (pastel bg + bold fg, for topic / category icons) ── */
+  --icon-violet-bg: #ede9fe;
+  --icon-violet-fg: #7c3aed;
+  --icon-pink-bg:   #fce7f3;
+  --icon-pink-fg:   #db2777;
+  --icon-orange-bg: #ffedd5;
+  --icon-orange-fg: #ea580c;
+  --icon-blue-bg:   #dbeafe;
+  --icon-blue-fg:   #2563eb;
+  --icon-green-bg:  #d1fae5;
+  --icon-green-fg:  #059669;
+  --icon-yellow-bg: #fef3c7;
+  --icon-yellow-fg: #b45309;
+  --icon-teal-bg:   #ccfbf1;
+  --icon-teal-fg:   #0d9488;
+  --icon-rose-bg:   #ffe4e6;
+  --icon-rose-fg:   #e11d48;
 }
 
 .dark {

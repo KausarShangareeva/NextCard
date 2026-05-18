@@ -1,0 +1,109 @@
+.nav {
+  position: relative;
+  z-index: 50;
+  height: 78px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--pill-dark);
+  color: white;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px -4px rgba(24, 19, 31, 0.4);
+}
+
+.navMid {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--card-2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 4px 24px -6px rgba(var(--shadow-purple), 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border-radius: 100px;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: color 0.18s, background 0.18s;
+}
+.navLink:hover {
+  color: var(--ink);
+  background: rgba(26, 21, 48, 0.05);
+}
+.navLinkActive {
+  color: var(--ink);
+}
+.navLink svg {
+  opacity: 0.45;
+}
+
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 20px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: white;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  box-shadow: 0 8px 22px -6px rgba(24, 19, 31, 0.5);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.navCta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -6px rgba(24, 19, 31, 0.6);
+}
+.navCta svg {
+  transition: transform 0.2s;
+}
+.navCta:hover svg {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 720px) {
+  .nav {
+    padding: 0 18px;
+    height: 64px;
+  }
+  .navMid {
+    display: none;
+  }
+}

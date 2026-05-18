@@ -1,0 +1,286 @@
+.footer {
+  position: relative;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(26, 21, 48, 0.06);
+  padding: 56px 36px 28px;
+  color: var(--ink);
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  gap: 48px 64px;
+  padding-bottom: 36px;
+}
+
+/* ─── brand column ─── */
+.brandCol {
+  max-width: 360px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.brandMark {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--pill-dark);
+  color: white;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px -4px rgba(24, 19, 31, 0.4);
+}
+
+.tagline {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ─── link columns ─── */
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, auto));
+  gap: 48px;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linkHead {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 4px;
+}
+
+.link {
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.18s;
+  width: fit-content;
+}
+.link:hover {
+  color: var(--brand-purple);
+}
+
+/* ─── team section ─── */
+.team {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 0;
+  border-top: 1px solid rgba(26, 21, 48, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.teamLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.teamDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink));
+  box-shadow: 0 0 0 3px rgba(var(--brand-purple-rgb), 0.15);
+}
+
+.teamMembers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.member {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 16px 8px 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 2px 8px -3px rgba(var(--shadow-purple), 0.1);
+}
+.member:hover {
+  background: white;
+  transform: translateY(-2px);
+  border-color: rgba(var(--brand-purple-rgb), 0.25);
+  box-shadow:
+    0 10px 24px -6px rgba(var(--shadow-purple), 0.22),
+    0 2px 6px -2px rgba(var(--shadow-purple), 0.1);
+}
+
+.avatar {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-pink) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  overflow: visible;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px -2px rgba(var(--shadow-purple), 0.35);
+}
+/* The actual photo (lives in /public/team/). Falls back to gradient + initials. */
+.avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: var(--photo);
+  background-size: cover;
+  background-position: center;
+}
+
+.linkedinBadge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0a66c2;
+  color: white;
+  display: grid;
+  place-items: center;
+  border: 2px solid white;
+  z-index: 2;
+}
+.linkedinBadge svg {
+  display: block;
+}
+
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.memberName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.memberRole {
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* ─── bottom row ─── */
+.bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(26, 21, 48, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.copy {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.repoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  background: rgba(26, 21, 48, 0.04);
+  border: 1px solid rgba(26, 21, 48, 0.08);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.repoBtn:hover {
+  background: white;
+  color: var(--ink);
+  border-color: rgba(var(--brand-purple-rgb), 0.25);
+  transform: translateY(-1px);
+}
+.repoBtn svg:last-child {
+  opacity: 0.6;
+}
+
+/* ─── responsive ─── */
+@media (max-width: 720px) {
+  .footer {
+    padding: 40px 20px 20px;
+  }
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 28px;
+  }
+  .linksGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .team {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .teamMembers {
+    width: 100%;
+  }
+  .bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .linksGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+  }
+  .member {
+    flex: 1 0 auto;
+  }
+}
