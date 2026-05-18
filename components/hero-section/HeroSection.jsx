@@ -1,13 +1,12 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Inter, Instrument_Serif } from 'next/font/google';
+import { useRouter } from 'next/navigation';
+import { Instrument_Serif } from 'next/font/google';
+import { BookOpen, Bot, Brain, Rocket, X } from 'lucide-react';
 import styles from './HeroSection.module.css';
+import { STORAGE_KEYS } from '@/lib/storage';
 
-const inter = Inter({
-  weight: ['300', '400', '500', '600', '700', '800'],
-  subsets: ['latin'],
-});
 const serif = Instrument_Serif({
   weight: '400',
   style: ['normal', 'italic'],
@@ -28,66 +27,24 @@ const I = {
       <path d="M7 17 17 7M9 7h8v8" />
     </svg>
   ),
-  Plus: (p) => (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M12 5v14M5 12h14" />
-    </svg>
-  ),
   Check: (p) => (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" {...p}>
       <path d="M20 6 9 17l-5-5" />
     </svg>
   ),
-  X: (p) => (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M18 6 6 18M6 6l12 12" />
-    </svg>
-  ),
-  Cards: (p) => (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <rect x="3" y="5" width="14" height="16" rx="2" />
-      <path d="M7 3h10a2 2 0 0 1 2 2v14" />
-    </svg>
-  ),
-  Brain: (p) => (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
-      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z" />
-    </svg>
-  ),
-  Robot: (p) => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <rect x="3" y="8" width="18" height="12" rx="2" />
-      <path d="M12 4v4M9 14h.01M15 14h.01M9 18h6" />
-      <circle cx="12" cy="3" r="1" />
-    </svg>
-  ),
-  Rocket: (p) => (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z" />
-      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z" />
-      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-    </svg>
-  ),
-  Logo: (p) => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" {...p}>
-      <rect x="3" y="4" width="13" height="17" rx="2.5" opacity="0.4" />
-      <rect x="8" y="3" width="13" height="17" rx="2.5" />
-    </svg>
-  ),
 };
 
 const MESSAGES = [
-  { icon: I.Cards,  text: 'Generating your learning cards…' },
-  { icon: I.Brain,  text: 'Adding a quiz every 3 topics' },
-  { icon: I.Robot,  text: 'Choosing your robot-teacher skin' },
-  { icon: I.Rocket, text: 'Mapping your learning journey' },
+  { icon: BookOpen, text: 'Generating your learning cards…' },
+  { icon: Brain,    text: 'Adding a quiz every 3 topics' },
+  { icon: Bot,      text: 'Choosing your robot-teacher skin' },
+  { icon: Rocket,   text: 'Mapping your learning journey' },
 ];
 
-const STEPS = [
+// Fake bar that caps at 95% — the real API call jumps it to 100% on success.
+const FAKE_STEPS = [
   [18, 350], [35, 1100], [52, 2500], [68, 4000],
-  [79, 5600], [88, 7200], [95, 9100], [100, 12000],
+  [79, 5600], [88, 7200], [95, 9100],
 ];
 
 const EXAMPLES = [
@@ -96,7 +53,7 @@ const EXAMPLES = [
   { label: 'vercel.com/docs', url: 'https://vercel.com/docs' },
 ];
 
-function IdleState({ url, setUrl, onSubmit }) {
+function IdleState({ url, setUrl, error, onDismissError, onSubmit }) {
   const valid = url.trim().length > 4;
 
   const handlePaste = (e) => {
@@ -129,6 +86,19 @@ function IdleState({ url, setUrl, onSubmit }) {
         </button>
       </div>
 
+      {error && (
+        <div className={styles.errorChip} role="alert">
+          <span>{error}</span>
+          <button
+            className={styles.errorDismiss}
+            onClick={onDismissError}
+            aria-label="Dismiss"
+          >
+            <X size={12} strokeWidth={2.4} />
+          </button>
+        </div>
+      )}
+
       <div className={styles.actions}>
         <span className={styles.actionsLabel}>Try:</span>
         {EXAMPLES.map((e) => (
@@ -149,20 +119,27 @@ function IdleState({ url, setUrl, onSubmit }) {
   );
 }
 
-function LoadingState({ pct, mi, onCancel }) {
+function LoadingPanel({ pct, mi, onCancel }) {
   const msg = MESSAGES[mi];
   const MsgIcon = msg.icon;
   return (
-    <div className={styles.panel}>
+    <div className={styles.loadPanel}>
       <div className={styles.loadRow}>
         <div className={styles.loadMsg} key={mi}>
-          <div className={styles.msgIcon}><MsgIcon /></div>
+          <div className={styles.msgIcon}>
+            <MsgIcon size={16} strokeWidth={2} />
+          </div>
           <span>{msg.text}</span>
         </div>
         <div className={styles.loadRight}>
           <div className={styles.loadPct}>{Math.round(pct)}%</div>
-          <button className={styles.loadCancel} onClick={onCancel} title="Cancel">
-            <I.X />
+          <button
+            className={styles.loadCancel}
+            onClick={onCancel}
+            title="Cancel"
+            aria-label="Cancel"
+          >
+            <X size={12} strokeWidth={2.4} />
           </button>
         </div>
       </div>
@@ -176,80 +153,89 @@ function LoadingState({ pct, mi, onCancel }) {
   );
 }
 
-function DoneState({ onReset }) {
-  const cards = [
-    { tag: 'Topic 1', color: '#a855f7', name: 'Authentication Flow' },
-    { tag: 'Topic 2', color: '#ec4899', name: 'API Rate Limits' },
-    { tag: 'Topic 3', color: '#f97316', name: 'Error Handling' },
-    { tag: 'Quiz',    color: '#10b981', name: '3 questions ready' },
-  ];
-  return (
-    <div className={styles.panel}>
-      <div className={styles.doneEyebrow}>
-        <I.Check /> Your path is ready
-      </div>
-      <div className={styles.doneCards}>
-        {cards.map((c, i) => (
-          <div key={i} className={styles.dcard} style={{ animationDelay: `${i * 0.06}s` }}>
-            <div className={styles.dcardTag} style={{ color: c.color }}>{c.tag}</div>
-            <div className={styles.dcardName}>{c.name}</div>
-          </div>
-        ))}
-      </div>
-      <div className={styles.doneRow}>
-        <button className={styles.doneCta}>
-          Start learning <I.ArrowUR />
-        </button>
-        <button className={styles.doneReset} onClick={onReset}>
-          Try another
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function HeroSection() {
+  const router = useRouter();
   const [url, setUrl] = useState('');
-  const [phase, setPhase] = useState('idle');
+  const [phase, setPhase] = useState('idle'); // 'idle' | 'loading'
   const [pct, setPct] = useState(0);
   const [mi, setMi] = useState(0);
+  const [error, setError] = useState(null);
 
   const go = useCallback(
     (pastedUrl) => {
-      const u = pastedUrl || url;
-      if (!u || u.trim().length < 4) return;
+      const u = (pastedUrl || url).trim();
+      if (!u || u.length < 4) return;
       if (pastedUrl) setUrl(pastedUrl);
-      setPhase('loading');
+
+      setError(null);
       setPct(0);
       setMi(0);
+      setPhase('loading');
+
+      let cancelled = false;
+      (async () => {
+        try {
+          const res = await fetch('/api/parse', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: u }),
+          });
+          const data = await res.json();
+          if (cancelled) return;
+          if (!res.ok) {
+            setPhase('idle');
+            setError(data?.error?.message ?? 'Failed to parse the site.');
+            return;
+          }
+          setPct(100);
+          try {
+            sessionStorage.setItem(STORAGE_KEYS.parseResult, JSON.stringify(data));
+          } catch {
+            /* sessionStorage can throw in private mode — keep going */
+          }
+          setTimeout(() => {
+            if (!cancelled) router.push('/courses/new');
+          }, 500);
+        } catch {
+          if (cancelled) return;
+          setPhase('idle');
+          setError("Couldn't reach the parser. Check your connection.");
+        }
+      })();
+
+      // Stored on instance so reset() can flip it
+      go.cancelCurrent = () => {
+        cancelled = true;
+      };
     },
-    [url]
+    [url, router],
   );
 
   const reset = useCallback(() => {
+    if (go.cancelCurrent) go.cancelCurrent();
     setPhase('idle');
-    setUrl('');
     setPct(0);
     setMi(0);
-  }, []);
+  }, [go]);
 
+  // Fake progress ticks
   useEffect(() => {
     if (phase !== 'loading') return;
-    const ts = STEPS.map(([p, ms]) =>
-      setTimeout(() => {
-        setPct(p);
-        if (p === 100) setTimeout(() => setPhase('done'), 650);
-      }, ms)
+    const timeouts = FAKE_STEPS.map(([p, ms]) =>
+      setTimeout(() => setPct((cur) => Math.max(cur, p)), ms),
     );
+    return () => timeouts.forEach(clearTimeout);
+  }, [phase]);
+
+  // Cycle messages
+  useEffect(() => {
+    if (phase !== 'loading') return;
     const iv = setInterval(() => setMi((i) => (i + 1) % MESSAGES.length), 3000);
-    return () => {
-      ts.forEach(clearTimeout);
-      clearInterval(iv);
-    };
+    return () => clearInterval(iv);
   }, [phase]);
 
   return (
-    <div className={`${styles.root} ${inter.className}`}>
+    <div className={styles.root}>
       <section className={styles.hero}>
         <div className={styles.gridTex} />
 
@@ -269,19 +255,6 @@ export default function HeroSection() {
           ['--d']: '18s', ['--dl']: '1s', ['--tx']: '20px', ['--ty']: '-20px',
         }} />
 
-        <nav className={styles.nav}>
-          <a href="#" className={styles.brand}>
-            <div className={styles.brandMark}><I.Logo /></div>
-            NextCard
-          </a>
-          <div className={styles.navMid}>
-            <a href="#" className={`${styles.navLink} ${styles.navLinkActive}`}>Home</a>
-            <a href="#" className={styles.navLink}>For learners <I.Plus /></a>
-            <a href="#" className={styles.navLink}>For teams <I.Plus /></a>
-          </div>
-          <button className={styles.navCta}>Let&apos;s Talk <I.ArrowUR /></button>
-        </nav>
-
         <div className={styles.stage}>
           <div className={styles.headCol}>
             <h1 className={`${serif.className} ${styles.h1}`}>
@@ -297,9 +270,18 @@ export default function HeroSection() {
               quizzes, and a learning path made just for you.
             </p>
 
-            {phase === 'idle'    && <IdleState url={url} setUrl={setUrl} onSubmit={go} />}
-            {phase === 'loading' && <LoadingState pct={pct} mi={mi} onCancel={reset} />}
-            {phase === 'done'    && <DoneState onReset={reset} />}
+            {phase === 'idle' && (
+              <IdleState
+                url={url}
+                setUrl={setUrl}
+                error={error}
+                onDismissError={() => setError(null)}
+                onSubmit={go}
+              />
+            )}
+            {phase === 'loading' && (
+              <LoadingPanel pct={pct} mi={mi} onCancel={reset} />
+            )}
           </div>
         </div>
       </section>
