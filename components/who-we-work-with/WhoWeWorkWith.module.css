@@ -1,0 +1,166 @@
+.section {
+  background: var(--pill-light);
+  padding: 56px 0;
+}
+
+.card {
+  background: #fff;
+  border-radius: 28px;
+  padding: 72px 72px 56px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2fr;
+  gap: 64px;
+  margin-bottom: 96px;
+  align-items: baseline;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.bullet {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: inline-block;
+}
+
+.copy {
+  font-size: clamp(18px, 1.8vw, 26px);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0;
+  max-width: 760px;
+}
+
+.clientsHead {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.clients {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  color: var(--ink-3);
+}
+
+.client {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.clientDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  display: inline-block;
+}
+
+/* ─── moving marquee (Swedish brands) ─── */
+.marquee {
+  margin-top: 56px;
+  overflow: hidden;
+  width: calc(100% + 144px);
+  margin-left: -72px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  align-items: center;
+  gap: 64px;
+  white-space: nowrap;
+  padding-right: 64px;
+  animation: scrollRight 42s linear infinite;
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marqueeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.marqueeDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-4);
+  display: inline-block;
+}
+
+@media (max-width: 980px) {
+  .card {
+    padding: 56px 40px 40px;
+  }
+  .top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 64px;
+  }
+  .clients {
+    gap: 16px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: 32px 0;
+  }
+  .card {
+    padding: 40px 24px 32px;
+    border-radius: 20px;
+  }
+  .client {
+    font-size: 15px;
+  }
+}
