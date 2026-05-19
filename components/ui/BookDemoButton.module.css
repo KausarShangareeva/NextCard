@@ -18,34 +18,52 @@
 }
 
 .size_md {
-  padding: 11px 22px;
-  gap: 8px;
+  padding: 6px 6px 6px 18px;
+  gap: 10px;
   font-size: 14px;
 }
 
 .size_lg {
-  padding: 14px 26px;
-  gap: 9px;
+  padding: 7px 7px 7px 22px;
+  gap: 12px;
   font-size: 14.5px;
 }
 
-.wave {
-  display: inline-block;
-  line-height: 1;
-  transform-origin: 70% 70%;
+.iconCircle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #8674ed;
+  color: #fff;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.size_md .wave { font-size: 15px; }
-.size_lg .wave { font-size: 16px; }
-
-.btn:hover .wave {
-  animation: bookDemoWave 0.9s ease-in-out;
+.size_md .iconCircle {
+  width: 28px;
+  height: 28px;
 }
 
-@keyframes bookDemoWave {
-  0%, 100% { transform: rotate(0deg); }
-  20%      { transform: rotate(-14deg); }
-  40%      { transform: rotate(12deg); }
-  60%      { transform: rotate(-8deg); }
-  80%      { transform: rotate(6deg); }
+.size_lg .iconCircle {
+  width: 34px;
+  height: 34px;
+}
+
+.btn:hover .iconCircle {
+  transform: translate(2px, -2px);
+}
+
+/* ─── dark variant: dark pill + white icon circle with dark arrow ─── */
+.variant_dark {
+  background: var(--pill-dark);
+  color: #fff;
+}
+
+.variant_dark:hover {
+  background: #1f1f25;
+}
+
+.variant_dark .iconCircle {
+  background: #fff;
+  color: var(--ink);
 }

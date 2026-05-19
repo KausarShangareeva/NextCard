@@ -115,7 +115,7 @@ export default function Footer() {
             <h3 className={styles.ctaTitle}>
               Get a 30-min demo with our compliance team.
             </h3>
-            <BookDemoButton size="lg" />
+            <BookDemoButton size="lg" variant="dark" />
           </div>
         </div>
 
