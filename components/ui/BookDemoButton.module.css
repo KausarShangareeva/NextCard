@@ -1,0 +1,51 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 100px;
+  background: var(--pill-light);
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btn:hover {
+  background: var(--pill-light-hover);
+  transform: translateY(-1px);
+}
+
+.size_md {
+  padding: 11px 22px;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.size_lg {
+  padding: 14px 26px;
+  gap: 9px;
+  font-size: 14.5px;
+}
+
+.wave {
+  display: inline-block;
+  line-height: 1;
+  transform-origin: 70% 70%;
+}
+
+.size_md .wave { font-size: 15px; }
+.size_lg .wave { font-size: 16px; }
+
+.btn:hover .wave {
+  animation: bookDemoWave 0.9s ease-in-out;
+}
+
+@keyframes bookDemoWave {
+  0%, 100% { transform: rotate(0deg); }
+  20%      { transform: rotate(-14deg); }
+  40%      { transform: rotate(12deg); }
+  60%      { transform: rotate(-8deg); }
+  80%      { transform: rotate(6deg); }
+}
