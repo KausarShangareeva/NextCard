@@ -40,6 +40,7 @@ export const INITIAL_DEMO_REQUESTS = [
     heardAbout: "Work colleague or Partner",
     received: "1d ago",
     status: "contacted",
+    assignedTo: { slug: "salim",   name: "Salim",   role: "AI search",   photo: "/team/salim.jpg"   },
   },
   {
     id: 4,
@@ -54,6 +55,7 @@ export const INITIAL_DEMO_REQUESTS = [
     heardAbout: "AI Search (like Chat GPT)",
     received: "2d ago",
     status: "booked",
+    assignedTo: { slug: "begimai", name: "Begimai", role: "Backend",     photo: "/team/begimai.jpg" },
   },
   {
     id: 5,
@@ -68,6 +70,7 @@ export const INITIAL_DEMO_REQUESTS = [
     heardAbout: "HR/Retail/Hospitality Network",
     received: "3d ago",
     status: "booked",
+    assignedTo: { slug: "kausyar", name: "Kausyar", role: "Frontend",    photo: "/team/kausyar.jpg" },
   },
   {
     id: 6,
@@ -82,6 +85,7 @@ export const INITIAL_DEMO_REQUESTS = [
     heardAbout: "Social Media",
     received: "5d ago",
     status: "contacted",
+    assignedTo: { slug: "aakash",  name: "Aakash",  role: "AI Engineer", photo: "/team/aakash.jpg"  },
   },
   {
     id: 7,
@@ -110,6 +114,7 @@ export const INITIAL_DEMO_REQUESTS = [
     heardAbout: "Other",
     received: "1w ago",
     status: "contacted",
+    assignedTo: { slug: "shansa",  name: "Shansa",  role: "Senior Dev",  photo: "/team/shansa.jpg"  },
   },
 ];
 

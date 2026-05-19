@@ -11,7 +11,12 @@ export default function TeamNavActions() {
     <>
       {user && (
         <span className={styles.adminPill}>
-          <span className={styles.adminAv}>{user.name?.[0] ?? "?"}</span>
+          <span
+            className={styles.adminAv}
+            style={user.photo ? { "--photo": `url(${user.photo})` } : undefined}
+          >
+            {user.name?.[0] ?? "?"}
+          </span>
           <span className={styles.adminInfo}>
             <span className={styles.adminName}>{user.name}</span>
             <span className={styles.adminRole}>{user.role}</span>

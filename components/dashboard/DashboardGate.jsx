@@ -9,11 +9,11 @@ const STORAGE_KEY = "nextcard_team_user";
 // Hackathon-grade auth: each team member has their own personal key.
 // To change a key or add a teammate, edit this array.
 export const TEAM_MEMBERS = [
-  { key: "kausyar-2026", slug: "kausyar", name: "Kausyar", role: "Frontend"    },
-  { key: "begimai-2026", slug: "begimai", name: "Begimai", role: "Backend"     },
-  { key: "salim-2026",   slug: "salim",   name: "Salim",   role: "AI search"   },
-  { key: "aakash-2026",  slug: "aakash",  name: "Aakash",  role: "AI Engineer" },
-  { key: "shansa-2026",  slug: "shansa",  name: "Shansa",  role: "Senior Dev"  },
+  { key: "kausyar-2026", slug: "kausyar", name: "Kausyar", role: "Frontend",    photo: "/team/kausyar.jpg" },
+  { key: "begimai-2026", slug: "begimai", name: "Begimai", role: "Backend",     photo: "/team/begimai.jpg" },
+  { key: "salim-2026",   slug: "salim",   name: "Salim",   role: "AI search",   photo: "/team/salim.jpg"   },
+  { key: "aakash-2026",  slug: "aakash",  name: "Aakash",  role: "AI Engineer", photo: "/team/aakash.jpg"  },
+  { key: "shansa-2026",  slug: "shansa",  name: "Shansa",  role: "Senior Dev",  photo: "/team/shansa.jpg"  },
 ];
 
 const TeamAuthContext = createContext({ user: null, signOut: () => {} });

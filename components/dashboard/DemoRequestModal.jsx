@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { STATUSES_WITH_DETAILS } from "./demoRequestsData";
+import { useTeamAuth } from "./DashboardGate";
 import styles from "./DemoRequestModal.module.css";
 
 const CloseIcon = () => (
@@ -44,6 +44,8 @@ const STATUSES = [
 ];
 
 export default function DemoRequestModal({ request, onClose, onStatusChange }) {
+  const { user } = useTeamAuth();
+
   useEffect(() => {
     if (!request) return;
     const prev = document.body.style.overflow;
@@ -59,6 +61,26 @@ export default function DemoRequestModal({ request, onClose, onStatusChange }) {
   }, [request, onClose]);
 
   if (!request) return null;
+
+  const handleStatus = (status) => {
+    // When moving forward (Contacted / Booked) we record who did it.
+    // When pulling back to New we clear the assignee.
+    if (status === "new") {
+      onStatusChange?.(request.id, status, { assignedTo: null });
+    } else {
+      const assignedTo = request.assignedTo ?? (user
+        ? {
+            slug: user.slug,
+            name: user.name,
+            role: user.role,
+            photo: user.photo,
+          }
+        : null);
+      onStatusChange?.(request.id, status, { assignedTo });
+    }
+  };
+
+  const assignee = request.assignedTo;
 
   return (
     <div
@@ -101,7 +123,7 @@ export default function DemoRequestModal({ request, onClose, onStatusChange }) {
               <button
                 key={s.value}
                 type="button"
-                onClick={() => onStatusChange?.(request.id, s.value)}
+                onClick={() => handleStatus(s.value)}
                 className={`${styles.statusBtn} ${
                   active ? styles.statusBtnActive : ""
                 } ${active ? styles[s.cls] : ""}`.trim()}
@@ -112,6 +134,23 @@ export default function DemoRequestModal({ request, onClose, onStatusChange }) {
             );
           })}
         </div>
+
+        {assignee && (
+          <div className={styles.assigneeRow}>
+            <span
+              className={styles.assigneeAv}
+              style={assignee.photo ? { "--photo": `url(${assignee.photo})` } : undefined}
+            >
+              {assignee.name?.[0] ?? "?"}
+            </span>
+            <div className={styles.assigneeInfo}>
+              <span className={styles.assigneeLabel}>Assigned to</span>
+              <span className={styles.assigneeName}>
+                {assignee.name} · <span className={styles.assigneeRole}>{assignee.role}</span>
+              </span>
+            </div>
+          </div>
+        )}
 
         <div className={styles.section}>
           <div className={styles.sectionLabel}>Contact</div>
@@ -158,7 +197,24 @@ export default function DemoRequestModal({ request, onClose, onStatusChange }) {
           <button type="button" className={styles.btnGhost} onClick={onClose}>
             Close
           </button>
-          {STATUSES_WITH_DETAILS.includes(request.status) ? (
+
+          {request.status === "new" && (
+            <span className={styles.footerHint}>
+              Mark as Contacted to assign yourself and lock in the lead.
+            </span>
+          )}
+
+          {request.status === "contacted" && (
+            <button
+              type="button"
+              className={styles.btnPrimary}
+              onClick={onClose}
+            >
+              Save
+            </button>
+          )}
+
+          {request.status === "booked" && (
             <Link
               href={`/dashboard/demo/${request.id}`}
               className={styles.btnPrimary}
@@ -167,10 +223,6 @@ export default function DemoRequestModal({ request, onClose, onStatusChange }) {
               View details
               <ArrowRight />
             </Link>
-          ) : (
-            <span className={styles.footerHint}>
-              Workspace unlocks once you mark this request as Contacted.
-            </span>
           )}
         </div>
       </div>

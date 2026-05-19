@@ -195,6 +195,7 @@
 }
 
 .adminAv {
+  position: relative;
   width: 28px;
   height: 28px;
   border-radius: 50%;
@@ -205,6 +206,17 @@
   font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.adminAv::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-image: var(--photo);
+  background-size: cover;
+  background-position: center;
 }
 
 .adminInfo {

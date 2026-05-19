@@ -57,13 +57,14 @@ export default function DemoRequestsTable({
               <th>Country</th>
               <th>Received</th>
               <th>Status</th>
+              <th>Assigned to</th>
               <th />
             </tr>
           </thead>
           <tbody>
             {requests.length === 0 ? (
               <tr>
-                <td colSpan={6} className={styles.empty}>{emptyText}</td>
+                <td colSpan={7} className={styles.empty}>{emptyText}</td>
               </tr>
             ) : (
               requests.map((r) => (
@@ -93,6 +94,21 @@ export default function DemoRequestsTable({
                       <span className={styles.pillDot} aria-hidden="true" />
                       {STATUS_LABEL[r.status]}
                     </span>
+                  </td>
+                  <td>
+                    {r.assignedTo ? (
+                      <span className={styles.assigned} title={`${r.assignedTo.name} · ${r.assignedTo.role}`}>
+                        <span
+                          className={styles.assignedAv}
+                          style={r.assignedTo.photo ? { "--photo": `url(${r.assignedTo.photo})` } : undefined}
+                        >
+                          {r.assignedTo.name?.[0] ?? "?"}
+                        </span>
+                        <span className={styles.assignedName}>{r.assignedTo.name}</span>
+                      </span>
+                    ) : (
+                      <span className={styles.unassigned}>—</span>
+                    )}
                   </td>
                   <td>
                     <button
