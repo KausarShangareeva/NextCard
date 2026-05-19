@@ -1,51 +1,53 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import BrandMark from '@/components/ui/BrandMark';
+import BookDemoButton from '@/components/ui/BookDemoButton';
+import Container from '@/components/ui/Container';
 import styles from './Navigation.module.css';
 
 const I = {
-  ArrowUR: (p) => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M7 17 17 7M9 7h8v8" />
+  Caret: (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...p}>
+      <path d="M12 5v14M5 12l7 7 7-7" />
     </svg>
   ),
-  Plus: (p) => (
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-      <path d="M12 5v14M5 12h14" />
-    </svg>
-  ),
-  Logo: (p) => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" {...p}>
-      <rect x="3" y="4" width="13" height="17" rx="2.5" opacity="0.4" />
-      <rect x="8" y="3" width="13" height="17" rx="2.5" />
+  Menu: (p) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" {...p}>
+      <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   ),
 };
 
-export default function Navigation() {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
+const NAV_LINKS = [
+  { label: 'Product',    hasCaret: true,  href: '#' },
+  { label: 'Solutions',  hasCaret: true,  href: '#' },
+  { label: 'Compliance', hasCaret: true,  href: '#' },
+  { label: 'Resources',  hasCaret: true,  href: '#' },
+  { label: 'Pricing',    hasCaret: false, href: '#' },
+];
 
+export default function Navigation() {
   return (
     <nav className={styles.nav}>
-      <Link href="/" className={styles.brand}>
-        <div className={styles.brandMark}><I.Logo /></div>
-        NextCard
-      </Link>
+      <Container className={styles.inner}>
+        <BrandMark />
 
-      <div className={styles.navMid}>
-        <Link
-          href="/"
-          className={`${styles.navLink} ${isHome ? styles.navLinkActive : ''}`}
-        >
-          Home
-        </Link>
-        <a href="#" className={styles.navLink}>For learners <I.Plus /></a>
-        <a href="#" className={styles.navLink}>For teams <I.Plus /></a>
-      </div>
+        <div className={styles.navMid}>
+          {NAV_LINKS.map((link) => (
+            <a key={link.label} href={link.href} className={styles.navLink}>
+              {link.label}
+              {link.hasCaret && <I.Caret width={10} height={10} className={styles.caret} />}
+            </a>
+          ))}
+        </div>
 
-      <button className={styles.navCta}>Let&apos;s Talk <I.ArrowUR /></button>
+        <div className={styles.navRight}>
+          <button className={styles.iconBtn} aria-label="Menu">
+            <I.Menu width={16} height={16} />
+          </button>
+          <BookDemoButton size="md" />
+        </div>
+      </Container>
     </nav>
   );
 }
