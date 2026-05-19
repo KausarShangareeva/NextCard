@@ -64,7 +64,7 @@ export default function TeamDashboard() {
             ? `${newCount} new · ${otherCount} in progress`
             : `${newCount} new`
         }
-        viewAllHref="/dashboard/demos"
+        viewAllHref="/dashboard/inbox"
         viewAllLabel="View all"
         requests={newRequests}
         emptyText="No new requests right now — nice work."

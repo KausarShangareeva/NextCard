@@ -36,15 +36,6 @@ export default function DemoRequestsList() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.head}>
-        <div className={styles.eyebrow}>Team workspace</div>
-        <h1 className={styles.title}>Demo requests</h1>
-        <p className={styles.sub}>
-          Full pipeline of incoming requests. Click any row to triage, change
-          status, or open the workspace.
-        </p>
-      </header>
-
       <div className={styles.toolbar}>
         {FILTERS.map((f) => (
           <button
