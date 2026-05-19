@@ -5,8 +5,8 @@
   --hero-purple-line: rgba(255, 255, 255, 0.18);
 
   position: relative;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
+  margin: 16px;
+  border-radius: 25px;
   background:
     radial-gradient(70% 55% at 50% 38%, #8674ed 0%, transparent 60%),
     radial-gradient(120% 90% at 50% 110%, #271a6e 0%, transparent 55%),
@@ -32,7 +32,8 @@
 .stage {
   position: relative;
   z-index: 2;
-  padding-top: clamp(48px, 7vh, 84px);
+  /* leave room for the floating nav pill at the top of the hero */
+  padding-top: clamp(120px, 14vh, 160px);
   display: flex;
   flex-direction: column;
   align-items: center;

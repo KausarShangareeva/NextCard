@@ -28,7 +28,7 @@ const LogoMark = () => (
 
 export default function WhoWeAre() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="about">
       <Container>
         <div className={styles.card}>
           <div className={styles.grid}>

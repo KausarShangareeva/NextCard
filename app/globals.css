@@ -9,10 +9,17 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply text-foreground;
     min-height: 100vh;
     background: var(--pill-light);
     background-attachment: fixed;
+  }
+  /* offset anchor targets so the floating nav doesn't overlap section headings */
+  section[id] {
+    scroll-margin-top: 100px;
   }
 }

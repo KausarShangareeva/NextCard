@@ -150,6 +150,10 @@
     gap: 16px;
     justify-content: center;
   }
+  .marquee {
+    width: calc(100% + 80px);
+    margin-left: -40px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -162,5 +166,17 @@
   }
   .client {
     font-size: 15px;
+  }
+  .marquee {
+    width: calc(100% + 48px);
+    margin-left: -24px;
+  }
+  .marqueeItem {
+    font-size: 18px;
+    gap: 8px;
+  }
+  .marqueeTrack {
+    gap: 40px;
+    padding-right: 40px;
   }
 }

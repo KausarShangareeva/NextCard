@@ -29,7 +29,7 @@ function MarqueeRow() {
 
 export default function WhoWeWorkWith() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="customers">
       <Container>
         <div className={styles.card}>
           <div className={styles.top}>
