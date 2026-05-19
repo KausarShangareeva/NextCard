@@ -1,0 +1,564 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--ink);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px 7px 11px;
+  border-radius: 100px;
+  background: var(--pill-light);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.15s;
+}
+
+.back:hover {
+  background: #fff;
+  color: var(--ink);
+  transform: translateX(-2px);
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.headLogo {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.headTitle {
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.headMeta {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headFlag {
+  width: 16px !important;
+  height: 12px !important;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(13, 13, 16, 0.06);
+}
+
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.portalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.portalLink:hover {
+  background: #1a1a1f;
+  transform: translateY(-1px);
+}
+
+/* ─── tabs ─── */
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 100px;
+  background: #fff;
+  border: 1px solid var(--line);
+  width: fit-content;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.tab:hover { color: var(--ink); }
+
+.tabActive {
+  background: var(--ink);
+  color: #fff;
+}
+.tabActive:hover { color: #fff; }
+
+.tabCount {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 100px;
+  background: var(--pill-light);
+  color: var(--ink);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.tabActive .tabCount {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* ─── panels ─── */
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.panelHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.panelTitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.panelMeta {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ─── profile ─── */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 16px;
+}
+
+.profileCard {
+  background: var(--pill-light);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profileLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.profileValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.profileSub {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--pill-light);
+  border-radius: 14px;
+}
+
+.contactAv {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 12.5px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.contactName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.contactRole {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.contactDetails {
+  font-size: 12px;
+  color: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contactDetails a {
+  color: inherit;
+  text-decoration: none;
+}
+.contactDetails a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* ─── employees panel ─── */
+.bigStat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.bigStatCard {
+  background: var(--pill-light);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.bigStatLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 8px;
+}
+
+.bigStatValue {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.bigStatSub {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* ─── programs / courses tab ─── */
+.programList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.programRow {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--pill-light);
+}
+
+.programName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.programRoles {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.programProgress {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.programBar {
+  height: 5px;
+  border-radius: 100px;
+  background: rgba(13, 13, 16, 0.07);
+  overflow: hidden;
+}
+
+.programBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--navy), #3454a8);
+}
+
+.programBarFillDone {
+  background: linear-gradient(90deg, #15784f, #2bb673);
+}
+
+.programPct {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── billing / invoices ─── */
+.invoiceTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.invoiceTable th {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: left;
+  padding: 10px 14px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.invoiceTable th:last-child { text-align: right; }
+
+.invoiceTable td {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.invoiceTable td:last-child { text-align: right; }
+.invoiceTable tr:last-child td { border-bottom: none; }
+
+.invoicePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #e6f5ee;
+  color: #15784f;
+}
+
+.invoicePillDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2bb673;
+}
+
+/* ─── documents tab ─── */
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.docRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--pill-light);
+}
+
+.docIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.docInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docMeta {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.docSize {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── notes / timeline ─── */
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.noteItem {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+
+.noteItem:last-child { border-bottom: none; padding-bottom: 0; }
+.noteItem:first-child { padding-top: 0; }
+
+.noteAv {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.noteBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.noteHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.noteActor {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.noteTime {
+  font-size: 11.5px;
+  color: var(--ink-4);
+}
+
+.noteText {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+/* ─── responsive ─── */
+@media (max-width: 980px) {
+  .profileGrid { grid-template-columns: 1fr; }
+  .bigStat { grid-template-columns: 1fr 1fr; }
+  .programRow { grid-template-columns: 1fr; gap: 8px; }
+}
+
+@media (max-width: 720px) {
+  .head { flex-direction: column; align-items: stretch; }
+  .bigStat { grid-template-columns: 1fr; }
+}
