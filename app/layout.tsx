@@ -2,6 +2,7 @@ import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import ConditionalChrome from "@/components/layout/ConditionalChrome";
 import { DemoModalProvider } from "@/components/demo-modal/DemoModalProvider";
+import { CourseRequestsProvider } from "@/components/course-requests/CourseRequestsProvider";
 
 const jakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -24,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={jakarta.variable}>
       <body className={jakarta.className}>
-        <DemoModalProvider>
-          <ConditionalChrome>{children}</ConditionalChrome>
-        </DemoModalProvider>
+        <CourseRequestsProvider>
+          <DemoModalProvider>
+            <ConditionalChrome>{children}</ConditionalChrome>
+          </DemoModalProvider>
+        </CourseRequestsProvider>
       </body>
     </html>
   );
