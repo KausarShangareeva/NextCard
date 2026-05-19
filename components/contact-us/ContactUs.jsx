@@ -19,10 +19,7 @@ export default function ContactUs() {
         <div className={styles.card}>
           <div className={styles.leftCol}>
             <div>
-              <div className={styles.startPill}>
-                <span className={styles.startPillDot} aria-hidden="true" />
-                Start a conversation
-              </div>
+              <div className={styles.startPill}>Start a conversation</div>
               <h3 className={styles.cardHeading}>
                 Tell us about your next stage.
               </h3>
