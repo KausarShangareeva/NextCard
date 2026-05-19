@@ -77,7 +77,11 @@
   letter-spacing: -0.005em;
   color: var(--ink-2);
   text-decoration: none;
+  background: transparent;
+  border: none;
   border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
   transition: background 0.15s, color 0.15s;
 }
 
@@ -88,12 +92,6 @@
 
 .bookBtn {
   margin-left: 4px;
-  background: var(--pill-dark) !important;
-  color: #fff !important;
-}
-
-.bookBtn:hover {
-  background: #1f1f25 !important;
 }
 
 .iconBtn {

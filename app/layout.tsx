@@ -2,6 +2,7 @@ import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import ConditionalChrome from "@/components/layout/ConditionalChrome";
 import { DemoModalProvider } from "@/components/demo-modal/DemoModalProvider";
+import { SignInModalProvider } from "@/components/signin-modal/SignInModalProvider";
 import { CourseRequestsProvider } from "@/components/course-requests/CourseRequestsProvider";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -27,7 +28,9 @@ export default function RootLayout({
       <body className={jakarta.className}>
         <CourseRequestsProvider>
           <DemoModalProvider>
-            <ConditionalChrome>{children}</ConditionalChrome>
+            <SignInModalProvider>
+              <ConditionalChrome>{children}</ConditionalChrome>
+            </SignInModalProvider>
           </DemoModalProvider>
         </CourseRequestsProvider>
       </body>

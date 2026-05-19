@@ -2,6 +2,7 @@
 
 import BrandMark from "@/components/ui/BrandMark";
 import BookDemoButton from "@/components/ui/BookDemoButton";
+import { useSignInModal } from "@/components/signin-modal/SignInModalProvider";
 import styles from "./Navigation.module.css";
 
 const I = {
@@ -41,6 +42,8 @@ const NAV_LINKS = [
 ];
 
 export default function Navigation() {
+  const { openSignIn } = useSignInModal();
+
   return (
     <nav className={styles.nav}>
       <div className={styles.pill}>
@@ -57,13 +60,14 @@ export default function Navigation() {
         </div>
 
         <div className={styles.navRight}>
-          <a href="#" className={styles.signIn}>
+          <button type="button" onClick={openSignIn} className={styles.signIn}>
             <I.SignIn width={15} height={15} />
             Sign In
-          </a>
+          </button>
           <BookDemoButton
             size="md"
             label="Book Demo"
+            variant="dark"
             className={styles.bookBtn}
           />
           <button
