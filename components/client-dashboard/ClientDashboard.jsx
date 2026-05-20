@@ -11,37 +11,28 @@ import {
 import styles from "./ClientDashboard.module.css";
 
 const STATS = [
-  { label: "Total employees",  value: "1,250", sub: "across 6 role profiles" },
+  { label: "Total employees",  value: "1,250", sub: "across 4 role profiles" },
   { label: "AMLR coverage",    value: "96%",   sub: "+4% vs last quarter", positive: true },
   { label: "Active programs",  value: "18",    sub: "all up to date" },
   { label: "Pending reviews",  value: "7",     sub: "due this week" },
 ];
 
 const ROLES = [
-  { name: "AML Officer",           articles: "Art. 20 · 42 · 51 · 69 · +8",  employees: 42,  completion: 98, risk: "high" },
-  { name: "KYC Analyst",           articles: "Art. 20 · 42 · 51 · +6",       employees: 87,  completion: 94, risk: "high" },
-  { name: "Branch Manager",        articles: "Art. 20 · 51 · 69 · +4",       employees: 156, completion: 91, risk: "medium" },
-  { name: "Customer Onboarding",   articles: "Art. 20 · 42 · +3",            employees: 248, completion: 89, risk: "medium" },
-  { name: "Operations Support",    articles: "Art. 51 · 69 · +2",            employees: 412, completion: 78, risk: "low" },
-  { name: "Risk Officer",          articles: "Art. 20 · 42 · 51 · 69 · +12", employees: 28,  completion: 100, risk: "high" },
+  { name: "AML DDI Manager",                     team: "AML Due Diligence & Investigations", employees: 38,  completion: 96,  risk: "high"   },
+  { name: "Money Laundering Reporting Officer",  team: "Risk & Compliance · 2LoD",           employees: 12,  completion: 100, risk: "high"   },
+  { name: "Transaction Monitoring (TM) Analyst", team: "Fraud & Financial Crime",            employees: 184, completion: 92,  risk: "medium" },
+  { name: "Customer Advisor",                    team: "Customer Operations",                employees: 1016,completion: 84,  risk: "medium" },
 ];
 
 const ACTIVITY = [
   { icon: <CheckCircle2 size={14} strokeWidth={1.8} />, html: <><strong>Lars Johansson</strong> completed <strong>Module 3 · Beneficial Ownership</strong></>, time: "2h ago" },
   { icon: <BookOpen     size={14} strokeWidth={1.8} />, html: <><strong>Klara Andersson</strong> started <strong>Sanctions Screening</strong> track</>, time: "4h ago" },
   { icon: <FileText     size={14} strokeWidth={1.8} />, html: <>Compliance review submitted by <strong>Erik Hellström</strong></>, time: "5h ago" },
-  { icon: <UserPlus     size={14} strokeWidth={1.8} />, html: <>New employee onboarded: <strong>Maria Lindberg</strong>, KYC Analyst</>, time: "1d ago" },
+  { icon: <UserPlus     size={14} strokeWidth={1.8} />, html: <>New employee onboarded: <strong>Maria Lindberg</strong>, Customer Advisor</>, time: "1d ago" },
   { icon: <ShieldCheck  size={14} strokeWidth={1.8} />, html: <>AMLR <strong>Article 51</strong> coverage updated to 100%</>, time: "1d ago" },
   { icon: <FileText     size={14} strokeWidth={1.8} />, html: <>Quarterly audit report generated</>, time: "2d ago" },
   { icon: <AlertTriangle size={14} strokeWidth={1.8} />, html: <>2 high-risk customers flagged for additional review</>, time: "3d ago" },
 ];
-
-// 184 AMLR articles → simplified to 24 cells for visualization
-const AMLR_CELLS = Array.from({ length: 24 }, (_, i) => {
-  if (i < 18) return "on";
-  if (i < 22) return "partial";
-  return "off";
-});
 
 const RISK_CLASS = {
   high: "riskHigh",
@@ -92,7 +83,7 @@ export default function ClientDashboard() {
               <div key={r.name} className={styles.roleRow}>
                 <div className={styles.roleNameCol}>
                   <div className={styles.roleName}>{r.name}</div>
-                  <div className={styles.roleArticles}>{r.articles}</div>
+                  <div className={styles.roleArticles}>{r.team}</div>
                 </div>
                 <div className={styles.roleBarWrap}>
                   <div className={styles.roleBar}>
@@ -104,29 +95,13 @@ export default function ClientDashboard() {
                   <div className={styles.roleBarLabel}>{r.completion}% complete</div>
                 </div>
                 <div className={styles.roleEmployees}>
-                  {r.employees} {r.employees === 1 ? "person" : "people"}
+                  {r.employees.toLocaleString()} {r.employees === 1 ? "person" : "people"}
                 </div>
                 <span className={`${styles.riskPill} ${styles[RISK_CLASS[r.risk]]}`}>
                   <span className={styles.riskDot} aria-hidden="true" />
                   {RISK_LABEL[r.risk]} risk
                 </span>
               </div>
-            ))}
-          </div>
-
-          <header className={styles.panelHead} style={{ marginTop: 28 }}>
-            <h2 className={styles.panelTitle}>AMLR article coverage</h2>
-            <span className={styles.panelMeta}>176 of 184 articles mapped</span>
-          </header>
-          <div className={styles.amlrStrip}>
-            {AMLR_CELLS.map((state, i) => (
-              <span
-                key={i}
-                className={`${styles.amlrCell} ${
-                  state === "on" ? styles.amlrOn : state === "partial" ? styles.amlrPartial : ""
-                }`.trim()}
-                aria-hidden="true"
-              />
             ))}
           </div>
         </section>
