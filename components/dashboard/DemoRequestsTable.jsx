@@ -26,10 +26,12 @@ export default function DemoRequestsTable({
   requests,
   emptyText = "No demo requests yet.",
 }) {
-  const { updateStatus } = useDemoRequests();
+  const { requests: allRequests, updateStatus } = useDemoRequests();
   const [selectedId, setSelectedId] = useState(null);
 
-  const selected = requests.find((r) => r.id === selectedId) ?? null;
+  // Look up the selected request from the full list, not the filtered prop —
+  // otherwise changing status to one that's filtered out closes the modal.
+  const selected = allRequests.find((r) => r.id === selectedId) ?? null;
 
   return (
     <section className={styles.panel}>
