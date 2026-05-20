@@ -50,7 +50,42 @@
 }
 
 .header {
-  margin-bottom: 22px;
+  margin-bottom: 18px;
+}
+
+/* ─── tabs ─── */
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 100px;
+  background: var(--pill-light);
+  margin-bottom: 18px;
+  width: 100%;
+  gap: 2px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tabActive {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(13, 13, 16, 0.08);
 }
 
 .eyebrow {
@@ -116,6 +151,19 @@
   color: var(--ink-2);
   letter-spacing: -0.005em;
   margin-bottom: 8px;
+}
+
+.labelStacked {
+  margin-top: 12px;
+}
+
+.inputLower {
+  text-transform: lowercase !important;
+  letter-spacing: 0.005em !important;
+}
+
+.inputLower::placeholder {
+  text-transform: none;
 }
 
 .inputWrap {
@@ -215,6 +263,40 @@
 
 .demoKeyBtn:hover {
   text-decoration: underline;
+}
+
+.demoChipsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.demoChips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.demoChip {
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: #4a39d0;
+  border-radius: 100px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.demoChip:hover {
+  background: rgba(74, 57, 208, 0.08);
+  border-color: #4a39d0;
 }
 
 @keyframes fadeIn {
