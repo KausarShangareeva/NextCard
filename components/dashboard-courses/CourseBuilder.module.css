@@ -1,0 +1,491 @@
+.builder {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ─── step section ─── */
+.step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px 24px 24px;
+}
+
+.stepHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stepBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepHeadText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.stepTitle {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.stepSub {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin: 0;
+  max-width: 720px;
+}
+
+.stepSub strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ─── step 1 — role ─── */
+.roleRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+}
+
+.roleField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 360px;
+}
+
+.label {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.roleStats {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  background: var(--pill-light);
+}
+
+.roleStat {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.roleStatLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.roleStatValue {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.roleStatDivider {
+  width: 1px;
+  height: 28px;
+  background: var(--line);
+}
+
+/* ─── step 2 — mapping ─── */
+.mapWrap {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 22px;
+}
+
+.mapCol {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mapColLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.riskList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.riskItem {
+  display: grid;
+  grid-template-columns: 110px 92px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--pill-light);
+}
+
+.riskName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.riskPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.riskDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.riskHigh   { background: #fdecec; color: #a5302a; }
+.riskHigh .riskDot   { background: #d9534f; }
+.riskMedium { background: #fdf4e3; color: #8a5a14; }
+.riskMedium .riskDot { background: #b08739; }
+.riskLow    { background: #e6f5ee; color: #15784f; }
+.riskLow .riskDot    { background: #2bb673; }
+
+.riskWhy {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.riskWhy svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.articleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.articleCard {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f6f1e6 0%, #f9f5ec 100%);
+  border: 1px solid #ecdfc1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.articleCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px -8px rgba(176, 135, 57, 0.3);
+}
+
+.articleHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.articleId {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b4910;
+  letter-spacing: 0.01em;
+}
+
+.articleTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.articleBlurb {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.articleRisks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.articleRiskChip {
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b4910;
+  background: rgba(176, 135, 57, 0.14);
+  padding: 2px 7px;
+  border-radius: 100px;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+}
+
+/* ─── step 3 — quarters ─── */
+.quarters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.quarter {
+  padding: 16px 16px 18px;
+  border-radius: 16px;
+  background: var(--pill-light);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quarterHead {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quarterTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.quarterHint {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.modules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.module {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.moduleTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.moduleName {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.moduleMinutes {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.moduleMeta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.moduleArticle {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #6b4910;
+  background: rgba(176, 135, 57, 0.14);
+  padding: 2px 7px;
+  border-radius: 5px;
+  letter-spacing: 0.01em;
+}
+
+.moduleArticleTitle {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.moduleWhy {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--pill-light);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.moduleWhy svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #8674ed;
+}
+
+/* ─── step 4 — publish bar ─── */
+.publish {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #1a1a1f 0%, #2a2438 100%);
+  color: #fff;
+  border-radius: 22px;
+  flex-wrap: wrap;
+}
+
+.publishLeft {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.publishEyebrow {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.publishTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.publishSub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+
+.publishSub strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.publishBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 100px;
+  background: #fff;
+  color: #1a1a1f;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+
+.publishBtn:hover {
+  transform: translateY(-1px);
+}
+
+.publishBtnDone {
+  background: #2bb673;
+  color: #fff;
+}
+
+.publishBtnDone:hover {
+  transform: none;
+}
+
+@media (max-width: 980px) {
+  .roleRow {
+    grid-template-columns: 1fr;
+  }
+  .mapWrap {
+    grid-template-columns: 1fr;
+  }
+  .quarters {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .riskItem {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .roleStats {
+    flex-wrap: wrap;
+  }
+  .publish {
+    padding: 18px;
+  }
+}
