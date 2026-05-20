@@ -152,6 +152,101 @@
   color: var(--ink-3);
 }
 
+.hintCode {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  background: rgba(176, 135, 57, 0.14);
+  color: #6b4910;
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+/* ─── success / credentials view ─── */
+.successHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.successIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e6f5ee;
+  color: #15784f;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+}
+
+.credBox {
+  background: linear-gradient(180deg, #f6f1e6 0%, #f9f5ec 100%);
+  border: 1px solid #ecdfc1;
+  border-radius: 14px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.credRow {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(176, 135, 57, 0.18);
+}
+
+.credLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.credValue {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.credKey {
+  letter-spacing: 0.05em;
+  color: #6b4910;
+}
+
+.credCopyBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--pill-light);
+  border: none;
+  color: var(--ink-3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.credCopyBtn:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
 .footer {
   display: flex;
   align-items: center;
