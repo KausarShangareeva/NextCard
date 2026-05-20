@@ -26,7 +26,9 @@ export default function DashboardShell({
   const pathname = usePathname() ?? "";
 
   const isActive = (href) => {
-    if (href === "/dashboard" || href === "/client") return pathname === href;
+    if (href === "/dashboard" || href === "/client" || href === "/learner") {
+      return pathname === href;
+    }
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 

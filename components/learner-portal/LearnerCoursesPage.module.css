@@ -1,0 +1,243 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--ink);
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.headLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 640px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.title {
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.sub strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ─── quarter section ─── */
+.quarter {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quarterHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.quarterTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 2px;
+}
+
+.quarterHint {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.quarterMeta {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  padding: 4px 10px;
+  background: var(--pill-light);
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: var(--pill-light);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -10px rgba(13, 13, 16, 0.12);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardArticle {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #6b4910;
+  background: rgba(176, 135, 57, 0.16);
+  padding: 2px 8px;
+  border-radius: 5px;
+  letter-spacing: 0.01em;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.statusNotStarted { background: #f1f1f3; color: var(--ink-3); }
+.statusInProgress { background: #ecf2ff; color: #2342a3; }
+.statusDone       { background: #e6f5ee; color: #15784f; }
+
+.cardName {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 2px 0 0;
+  line-height: 1.25;
+}
+
+.cardMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.cardWhy {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 10px 11px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.cardWhy svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #8674ed;
+}
+
+.cardWhy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.cardFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.cardBar {
+  flex: 1;
+  height: 5px;
+  border-radius: 100px;
+  background: rgba(13, 13, 16, 0.08);
+  overflow: hidden;
+}
+
+.cardBarFill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--navy), #3454a8);
+}
+
+.cardBarFillDone {
+  background: linear-gradient(90deg, #15784f, #2bb673);
+}
+
+.cardPct {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.cta:hover {
+  background: #1a1a1f;
+  transform: translateY(-1px);
+}
