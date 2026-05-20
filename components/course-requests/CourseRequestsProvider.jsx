@@ -4,13 +4,17 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import {
   INITIAL_COURSE_REQUESTS,
   IN_PRODUCTION_STATUSES,
 } from "./courseRequestsData";
+
+const STORAGE_KEY = "nextcard_course_requests";
 
 const CourseRequestsContext = createContext({
   requests: [],
@@ -24,6 +28,29 @@ const CourseRequestsContext = createContext({
 
 export function CourseRequestsProvider({ children }) {
   const [requests, setRequests] = useState(INITIAL_COURSE_REQUESTS);
+  const hydrated = useRef(false);
+
+  // Hydrate from localStorage on mount so requests survive page reloads
+  // and hard navigations between /client/* and /dashboard/*.
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) setRequests(parsed);
+      }
+    } catch {}
+    hydrated.current = true;
+  }, []);
+
+  // Persist after each change — skip the first effect pass so we don't
+  // overwrite stored data with the initial seed before hydration finishes.
+  useEffect(() => {
+    if (!hydrated.current) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(requests));
+    } catch {}
+  }, [requests]);
 
   const addRequest = useCallback((data) => {
     setRequests((rs) => [

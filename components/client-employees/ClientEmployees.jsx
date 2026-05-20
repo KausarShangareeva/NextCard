@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { MoreVertical, Search, Plus } from "lucide-react";
+import { MoreVertical, Search, Plus, Check, ArrowRight, AlertCircle } from "lucide-react";
+import { useCourseRequests } from "@/components/course-requests/CourseRequestsProvider";
+import RequestCourseModal from "@/components/client-courses/RequestCourseModal";
 import AddEmployeeModal from "./AddEmployeeModal";
 import EmployeeDetailsModal from "./EmployeeDetailsModal";
 import { ROLE_LIST, ROLE_PROFILES, usernameFrom } from "./roleProfiles";
@@ -11,8 +13,8 @@ const INITIAL_EMPLOYEES = [
   { id: 1,  initials: "LJ", name: "Lars Johansson",   username: "lars.johansson",    role: "AML DDI Manager",                     email: "lars.j@swedbank.se",      phone: "+46 70 123 45 67", status: "active",     programs: "AMLR · KYC",       progress: 92  },
   { id: 2,  initials: "KA", name: "Klara Andersson",  username: "klara.andersson",   role: "Transaction Monitoring (TM) Analyst", email: "klara.a@swedbank.se",     phone: "+46 70 234 56 78", status: "active",     programs: "AMLR core",        progress: 78  },
   { id: 3,  initials: "EH", name: "Erik Hellström",   username: "erik.hellstrom",    role: "Money Laundering Reporting Officer",  email: "erik.h@swedbank.se",      phone: "+46 70 345 67 89", status: "active",     programs: "AMLR · SAR",       progress: 100 },
-  { id: 4,  initials: "ML", name: "Maria Lindberg",   username: "maria.lindberg",    role: "Customer Advisor",                    email: "maria.l@swedbank.se",     phone: "+46 70 456 78 90", status: "onboarding", programs: "AMLR onboard",     progress: 18  },
-  { id: 5,  initials: "AB", name: "Anders Bergström", username: "anders.bergstrom",  role: "Customer Advisor",                    email: "a.bergstrom@swedbank.se", phone: "+46 70 567 89 01", status: "active",     programs: "AMLR · KYC",       progress: 86  },
+  { id: 4,  initials: "ML", name: "Maria Lindberg",   username: "maria.lindberg",    role: "Customer Advisor",                    previousRole: "AML DDI Manager", email: "maria.l@swedbank.se",     phone: "+46 70 456 78 90", status: "onboarding", programs: "AMLR onboard",     progress: 18  },
+  { id: 5,  initials: "AB", name: "Anders Bergström", username: "anders.bergstrom",  role: "Customer Advisor",                    previousRole: "AML DDI Manager", email: "a.bergstrom@swedbank.se", phone: "+46 70 567 89 01", status: "active",     programs: "AMLR · KYC",       progress: 86  },
   { id: 6,  initials: "SO", name: "Sofia Olsson",     username: "sofia.olsson",      role: "Transaction Monitoring (TM) Analyst", email: "sofia.o@swedbank.se",     phone: "+46 70 678 90 12", status: "active",     programs: "AMLR core",        progress: 64  },
   { id: 7,  initials: "JN", name: "Johan Nilsson",    username: "johan.nilsson",     role: "Money Laundering Reporting Officer",  email: "johan.n@swedbank.se",     phone: "+46 70 789 01 23", status: "active",     programs: "AMLR · Sanctions", progress: 100 },
   { id: 8,  initials: "EP", name: "Elsa Pettersson",  username: "elsa.pettersson",   role: "Customer Advisor",                    email: "elsa.p@swedbank.se",      phone: "+46 70 890 12 34", status: "inactive",   programs: "AMLR core",        progress: 42  },
@@ -52,12 +54,15 @@ const initialsFrom = (first, last) =>
   `${(first?.[0] ?? "").toUpperCase()}${(last?.[0] ?? "").toUpperCase()}` || "?";
 
 export default function ClientEmployees() {
+  const { addRequest } = useCourseRequests();
   const [employees, setEmployees] = useState(INITIAL_EMPLOYEES);
   const [statusFilter, setStatusFilter] = useState("all");
   const [roleFilter, setRoleFilter] = useState("all");
   const [query, setQuery] = useState("");
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isRequestOpen, setIsRequestOpen] = useState(false);
   const [activeEmployee, setActiveEmployee] = useState(null);
+  const [selectedIds, setSelectedIds] = useState(() => new Set());
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -89,6 +94,46 @@ export default function ClientEmployees() {
       },
       ...list,
     ]);
+  };
+
+  const toggleSelected = (id) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const clearSelection = () => setSelectedIds(new Set());
+
+  const selectedEmployees = useMemo(
+    () => employees.filter((e) => selectedIds.has(e.id)),
+    [employees, selectedIds]
+  );
+
+  const selectedRoleSummary = useMemo(() => {
+    const roles = Array.from(new Set(selectedEmployees.map((e) => e.role)));
+    if (roles.length === 0) return "";
+    if (roles.length === 1) return roles[0];
+    return `${roles.length} roles`;
+  }, [selectedEmployees]);
+
+  const handleRequestSubmit = (data) => {
+    addRequest({
+      client: "Swedbank",
+      clientCountryCode: "se",
+      requestedBy: "Linnéa Andersson",
+      requestedByEmail: "linnea@swedbank.se",
+      employees: selectedEmployees.map((e) => ({
+        id: e.id,
+        name: e.name,
+        role: e.role,
+        previousRole: e.previousRole ?? null,
+      })),
+      ...data,
+    });
+    clearSelection();
   };
 
   return (
@@ -167,54 +212,122 @@ export default function ClientEmployees() {
             </button>
           );
         })}
+        {selectedIds.size > 0 && (
+          <div className={styles.roleFiltersAction}>
+            <span className={styles.selectionMeta}>
+              {selectedIds.size} selected · {selectedRoleSummary}
+            </span>
+            <button
+              type="button"
+              className={styles.selectionClear}
+              onClick={clearSelection}
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              className={styles.requestBtn}
+              onClick={() => setIsRequestOpen(true)}
+            >
+              <Plus size={14} strokeWidth={2.2} />
+              Request new course
+            </button>
+          </div>
+        )}
       </div>
 
       <div className={styles.grid}>
-        {filtered.map((e) => (
-          <article key={e.id} className={styles.card}>
-            <button
-              type="button"
-              className={styles.cardMenu}
-              aria-label={`More details for ${e.name}`}
-              onClick={() => setActiveEmployee(e)}
+        {filtered.map((e) => {
+          const isSelected = selectedIds.has(e.id);
+          const hasRoleChanged = Boolean(e.previousRole);
+          return (
+            <article
+              key={e.id}
+              className={`${styles.card} ${
+                isSelected ? styles.cardSelected : ""
+              } ${hasRoleChanged ? styles.cardRoleChanged : ""}`.trim()}
+              onClick={() => toggleSelected(e.id)}
+              role="button"
+              tabIndex={0}
+              aria-pressed={isSelected}
+              onKeyDown={(ev) => {
+                if (ev.key === "Enter" || ev.key === " ") {
+                  ev.preventDefault();
+                  toggleSelected(e.id);
+                }
+              }}
             >
-              <MoreVertical size={14} strokeWidth={1.8} />
-            </button>
+              {isSelected && (
+                <span className={styles.selectBadge} aria-hidden="true">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+              )}
 
-            <div className={styles.cardTop}>
-              <div className={styles.avatar}>{e.initials}</div>
-              <div className={styles.cardName}>{e.name}</div>
-              <div className={styles.cardRole}>{e.role}</div>
-              <span
-                className={`${styles.statusPill} ${styles[STATUS_CLASS[e.status]]}`}
+              <button
+                type="button"
+                className={styles.cardMenu}
+                aria-label={`More details for ${e.name}`}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  setActiveEmployee(e);
+                }}
               >
-                <span className={styles.statusDot} aria-hidden="true" />
-                {STATUS_LABEL[e.status]}
-              </span>
-            </div>
+                <MoreVertical size={14} strokeWidth={1.8} />
+              </button>
 
-            <div className={styles.metaBox}>
-              <div className={styles.metaRow}>
-                <span className={styles.metaLabel}>Programs</span>
-                <span className={styles.metaValue}>{e.programs}</span>
+              <div className={styles.cardTop}>
+                <div className={styles.avatar}>{e.initials}</div>
+                <div className={styles.cardName}>{e.name}</div>
+                <div className={styles.cardRole}>{e.role}</div>
+                {hasRoleChanged && (
+                  <div className={styles.roleChangedBadge}>
+                    <AlertCircle size={11} strokeWidth={2} />
+                    <span className={styles.roleChangedFrom}>
+                      {ROLE_SHORT[e.previousRole] ?? e.previousRole}
+                    </span>
+                    <ArrowRight size={10} strokeWidth={2.2} />
+                    <span className={styles.roleChangedTo}>
+                      {ROLE_SHORT[e.role] ?? e.role}
+                    </span>
+                  </div>
+                )}
+                <span
+                  className={`${styles.statusPill} ${styles[STATUS_CLASS[e.status]]}`}
+                >
+                  <span className={styles.statusDot} aria-hidden="true" />
+                  {STATUS_LABEL[e.status]}
+                </span>
               </div>
-              <div className={styles.progressWrap}>
-                <div className={styles.progressTop}>
-                  <span className={styles.progressLabel}>Training progress</span>
-                  <span className={styles.progressValue}>{e.progress}%</span>
+
+              {hasRoleChanged && (
+                <div className={styles.roleChangedNote}>
+                  Role changed — needs a new course program.
                 </div>
-                <div className={styles.progressBar}>
-                  <div
-                    className={`${styles.progressFill} ${
-                      e.progress === 100 ? styles.progressFillDone : ""
-                    }`.trim()}
-                    style={{ width: `${e.progress}%` }}
-                  />
+              )}
+
+              <div className={styles.metaBox}>
+                <div className={styles.metaRow}>
+                  <span className={styles.metaLabel}>Programs</span>
+                  <span className={styles.metaValue}>{e.programs}</span>
+                </div>
+                <div className={styles.progressWrap}>
+                  <div className={styles.progressTop}>
+                    <span className={styles.progressLabel}>Training progress</span>
+                    <span className={styles.progressValue}>{e.progress}%</span>
+                  </div>
+                  <div className={styles.progressBar}>
+                    <div
+                      className={`${styles.progressFill} ${
+                        e.progress === 100 ? styles.progressFillDone : ""
+                      }`.trim()}
+                      style={{ width: `${e.progress}%` }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
 
       <AddEmployeeModal
@@ -226,6 +339,12 @@ export default function ClientEmployees() {
       <EmployeeDetailsModal
         employee={activeEmployee}
         onClose={() => setActiveEmployee(null)}
+      />
+
+      <RequestCourseModal
+        open={isRequestOpen}
+        onClose={() => setIsRequestOpen(false)}
+        onSubmit={handleRequestSubmit}
       />
     </div>
   );

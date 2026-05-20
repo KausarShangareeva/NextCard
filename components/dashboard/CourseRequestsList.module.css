@@ -52,6 +52,17 @@
   background: var(--pill-light);
 }
 
+.rowDone td {
+  opacity: 0.55;
+}
+
+.rowDone .clientCell,
+.rowDone .roleName {
+  text-decoration: line-through;
+  text-decoration-color: rgba(13, 13, 16, 0.35);
+  text-decoration-thickness: 1px;
+}
+
 .clientCell {
   display: inline-flex;
   align-items: center;

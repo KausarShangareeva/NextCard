@@ -7,13 +7,10 @@ import {
   AlertTriangle,
   FileText,
   Users,
-  Plus,
   Coins,
   Sparkles,
   ChevronDown,
 } from "lucide-react";
-import { useCourseRequests } from "@/components/course-requests/CourseRequestsProvider";
-import RequestCourseModal from "./RequestCourseModal";
 import styles from "./ClientCourses.module.css";
 
 const ICON = { size: 18, strokeWidth: 1.8 };
@@ -76,8 +73,6 @@ const PROGRAMS = [
 ];
 
 export default function ClientCourses() {
-  const { addRequest } = useCourseRequests();
-  const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(null);
 
   return (
@@ -98,19 +93,11 @@ export default function ClientCourses() {
             </div>
             <span className={styles.subDivider} aria-hidden="true" />
             <p className={styles.subHint}>
-              Missing something? Request a new course tailored to a specific
-              role — our compliance team builds it from your documents.
+              Need a course for a new role? Select the relevant employees on
+              the Employees page and request a tailored program from there.
             </p>
           </div>
         </div>
-        <button
-          type="button"
-          className={styles.requestBtn}
-          onClick={() => setIsOpen(true)}
-        >
-          <Plus size={14} strokeWidth={2.2} />
-          Request new course
-        </button>
       </header>
 
       <header className={styles.gridHead}>
@@ -185,19 +172,6 @@ export default function ClientCourses() {
         })}
       </div>
 
-      <RequestCourseModal
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        onSubmit={(data) =>
-          addRequest({
-            client: "Swedbank",
-            clientCountryCode: "se",
-            requestedBy: "Linnéa Andersson",
-            requestedByEmail: "linnea@swedbank.se",
-            ...data,
-          })
-        }
-      />
     </div>
   );
 }

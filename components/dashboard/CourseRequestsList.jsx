@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useCourseRequests } from "@/components/course-requests/CourseRequestsProvider";
 import {
   STATUS_LABEL,
@@ -14,6 +14,17 @@ export default function CourseRequestsList() {
   const [selectedId, setSelectedId] = useState(null);
 
   const selected = requests.find((r) => r.id === selectedId) ?? null;
+
+  // Done items sink to the bottom; everything else keeps its order.
+  const sorted = useMemo(
+    () =>
+      [...requests].sort((a, b) => {
+        const aDone = a.status === "done" ? 1 : 0;
+        const bDone = b.status === "done" ? 1 : 0;
+        return aDone - bDone;
+      }),
+    [requests]
+  );
 
   if (requests.length === 0) {
     return (
@@ -37,8 +48,12 @@ export default function CourseRequestsList() {
             </tr>
           </thead>
           <tbody>
-            {requests.map((r) => (
-              <tr key={r.id} onClick={() => setSelectedId(r.id)}>
+            {sorted.map((r) => (
+              <tr
+                key={r.id}
+                onClick={() => setSelectedId(r.id)}
+                className={r.status === "done" ? styles.rowDone : undefined}
+              >
                 <td>
                   <div className={styles.clientCell}>
                     <span

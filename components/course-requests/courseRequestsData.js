@@ -107,4 +107,6 @@ export const STATUS_PILL_CLASS = {
   done:          "pillDone",
 };
 
-export const IN_PRODUCTION_STATUSES = ["approved", "in-progress"];
+// Only "in-progress" requests appear in the /dashboard/courses generation queue.
+// "approved" sits in Inbox until the team flips it to "in-progress".
+export const IN_PRODUCTION_STATUSES = ["in-progress"];
