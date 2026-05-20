@@ -138,20 +138,26 @@ export default function CourseRequestModal({ request, onClose, onStatusChange })
           </div>
         )}
 
-        <div className={styles.section}>
-          <div className={styles.sectionLabel}>Role description</div>
-          <div className={styles.sectionText}>{request.roleDescription}</div>
-        </div>
+        {request.roleDescription && (
+          <div className={styles.section}>
+            <div className={styles.sectionLabel}>Role description</div>
+            <div className={styles.sectionText}>{request.roleDescription}</div>
+          </div>
+        )}
 
-        <div className={styles.section}>
-          <div className={styles.sectionLabel}>Tasks</div>
-          <div className={styles.sectionText}>{request.tasks}</div>
-        </div>
+        {request.tasks && (
+          <div className={styles.section}>
+            <div className={styles.sectionLabel}>Tasks</div>
+            <div className={styles.sectionText}>{request.tasks}</div>
+          </div>
+        )}
 
-        <div className={styles.section}>
-          <div className={styles.sectionLabel}>Responsibilities</div>
-          <div className={styles.sectionText}>{request.responsibilities}</div>
-        </div>
+        {request.responsibilities && (
+          <div className={styles.section}>
+            <div className={styles.sectionLabel}>Responsibilities</div>
+            <div className={styles.sectionText}>{request.responsibilities}</div>
+          </div>
+        )}
 
         {request.regulatoryScope?.length > 0 && (
           <div className={styles.section}>

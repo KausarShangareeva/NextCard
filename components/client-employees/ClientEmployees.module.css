@@ -192,6 +192,60 @@
   color: #fff;
 }
 
+/* ─── selection action (right of role row) ─── */
+.roleFiltersAction {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selectionMeta {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.selectionClear {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--ink-3);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.selectionClear:hover {
+  color: var(--ink);
+  background: var(--pill-light);
+}
+
+.requestBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.requestBtn:hover {
+  transform: translateY(-1px);
+  background: #1a1a1f;
+}
+
 .searchInput {
   flex: 1;
   min-width: 0;
@@ -230,6 +284,99 @@
   transform: translateY(-2px);
   border-color: var(--line-2);
   box-shadow: 0 16px 36px -16px rgba(13, 13, 16, 0.18);
+}
+
+.card:focus-visible {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(35, 66, 163, 0.15);
+}
+
+.cardSelected {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 2px rgba(35, 66, 163, 0.18),
+              0 16px 36px -18px rgba(35, 66, 163, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7ff 100%);
+}
+
+.cardSelected:hover {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 2px rgba(35, 66, 163, 0.22),
+              0 18px 38px -18px rgba(35, 66, 163, 0.4);
+}
+
+.selectBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px -4px rgba(35, 66, 163, 0.45);
+}
+
+.cardRoleChanged {
+  border-color: #e6c98a;
+  background: linear-gradient(180deg, #ffffff 0%, #fdf7e9 100%);
+  box-shadow: 0 0 0 1px rgba(176, 135, 57, 0.15),
+              0 14px 32px -18px rgba(176, 135, 57, 0.4);
+}
+
+.cardRoleChanged:hover {
+  border-color: #d8b768;
+  box-shadow: 0 0 0 1px rgba(176, 135, 57, 0.22),
+              0 18px 36px -18px rgba(176, 135, 57, 0.5);
+}
+
+.cardRoleChanged.cardSelected {
+  border-color: var(--navy);
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7ff 100%);
+  box-shadow: 0 0 0 2px rgba(35, 66, 163, 0.22),
+              0 18px 38px -18px rgba(35, 66, 163, 0.4);
+}
+
+.roleChangedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  border-radius: 100px;
+  background: rgba(176, 135, 57, 0.14);
+  color: #6b4910;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  max-width: 100%;
+}
+
+.roleChangedBadge svg {
+  flex-shrink: 0;
+}
+
+.roleChangedFrom {
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+.roleChangedTo {
+  font-weight: 700;
+}
+
+.roleChangedNote {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #6b4910;
+  background: rgba(176, 135, 57, 0.1);
+  border: 1px dashed rgba(176, 135, 57, 0.4);
+  border-radius: 10px;
+  padding: 7px 10px;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .cardMenu {

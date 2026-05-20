@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Upload, FileText, X } from "lucide-react";
+import { Check, X } from "lucide-react";
 import styles from "./RequestCourseModal.module.css";
 
 const CloseIcon = () => (
@@ -20,23 +20,25 @@ const CloseIcon = () => (
   </svg>
 );
 
-const humanSize = (bytes) => {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-};
-
-export default function RequestCourseModal({ open, onClose, onSubmit }) {
+export default function RequestCourseModal({ open, onClose, onSubmit, initialRole = "" }) {
   const [role, setRole] = useState("");
-  const [roleDescription, setRoleDescription] = useState("");
-  const [tasks, setTasks] = useState("");
-  const [responsibilities, setResponsibilities] = useState("");
   const [scope, setScope] = useState([]);
   const [scopeInput, setScopeInput] = useState("");
-  const [files, setFiles] = useState([]);
-  const [isDrag, setIsDrag] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const wasOpen = useRef(false);
 
-  const fileInputRef = useRef(null);
+  // Pre-fill the Role field from selected employees every time the modal opens.
+  // Reset the success view only on the closed→open transition (not on every
+  // initialRole change), otherwise clearSelection after Submit would wipe
+  // the success view via this effect.
+  useEffect(() => {
+    const justOpened = open && !wasOpen.current;
+    wasOpen.current = open;
+    if (justOpened) {
+      setRole(initialRole);
+      setSubmitted(false);
+    }
+  }, [open, initialRole]);
 
   useEffect(() => {
     if (!open) return;
@@ -56,12 +58,8 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
 
   const reset = () => {
     setRole("");
-    setRoleDescription("");
-    setTasks("");
-    setResponsibilities("");
     setScope([]);
     setScopeInput("");
-    setFiles([]);
   };
 
   const handleClose = () => {
@@ -86,36 +84,17 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
     }
   };
 
-  const addFiles = (fileList) => {
-    const newFiles = Array.from(fileList).map((f) => ({
-      name: f.name,
-      size: humanSize(f.size),
-    }));
-    setFiles((fs) => [...fs, ...newFiles]);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDrag(false);
-    if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files);
-  };
-
-  const isValid =
-    role.trim() && roleDescription.trim() && tasks.trim() && responsibilities.trim();
+  const isValid = role.trim().length > 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isValid) return;
     onSubmit?.({
       role,
-      roleDescription,
-      tasks,
-      responsibilities,
       regulatoryScope: scope,
-      files,
     });
     reset();
-    onClose?.();
+    setSubmitted(true);
   };
 
   return (
@@ -136,6 +115,27 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
           <CloseIcon />
         </button>
 
+        {submitted ? (
+          <div className={styles.success}>
+            <span className={styles.successIcon} aria-hidden="true">
+              <Check size={28} strokeWidth={3} />
+            </span>
+            <h2 id="request-course-title" className={styles.successTitle}>
+              Request sent
+            </h2>
+            <p className={styles.successText}>
+              A manager will get back to you within two business days.
+            </p>
+            <button
+              type="button"
+              className={styles.btnPrimary}
+              onClick={handleClose}
+            >
+              Done
+            </button>
+          </div>
+        ) : (
+        <>
         <div className={styles.header}>
           <span className={styles.eyebrow}>
             <span className={styles.eyebrowDot} aria-hidden="true" />
@@ -146,7 +146,7 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
           </h2>
           <p className={styles.sub}>
             Our compliance team turns this into an AMLR-aligned program in
-            ~5 business days. Attach role descriptions or policies if you have them.
+            ~5 business days.
           </p>
         </div>
 
@@ -163,51 +163,6 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
               onChange={(e) => setRole(e.target.value)}
               className={styles.input}
               placeholder="Crypto Compliance Officer · digital-asset desk"
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="rc-desc" className={styles.label}>
-              Role description*
-            </label>
-            <textarea
-              id="rc-desc"
-              required
-              value={roleDescription}
-              onChange={(e) => setRoleDescription(e.target.value)}
-              className={styles.textarea}
-              placeholder="What does this person actually do day-to-day?"
-              rows={3}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="rc-tasks" className={styles.label}>
-              Tasks*
-            </label>
-            <textarea
-              id="rc-tasks"
-              required
-              value={tasks}
-              onChange={(e) => setTasks(e.target.value)}
-              className={styles.textarea}
-              placeholder="Monitor on-chain transactions, file SAR, run KYC…"
-              rows={3}
-            />
-          </div>
-
-          <div className={styles.field}>
-            <label htmlFor="rc-resp" className={styles.label}>
-              Responsibilities*
-            </label>
-            <textarea
-              id="rc-resp"
-              required
-              value={responsibilities}
-              onChange={(e) => setResponsibilities(e.target.value)}
-              className={styles.textarea}
-              placeholder="Sign-off on onboarding, escalate to MLRO, train branch staff…"
-              rows={3}
             />
           </div>
 
@@ -249,58 +204,6 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
             </div>
           </div>
 
-          <div className={styles.field}>
-            <label className={styles.label}>Supporting documents</label>
-            <label
-              className={`${styles.upload} ${isDrag ? styles.uploadDrag : ""}`.trim()}
-              onDragOver={(e) => {
-                e.preventDefault();
-                setIsDrag(true);
-              }}
-              onDragLeave={() => setIsDrag(false)}
-              onDrop={handleDrop}
-            >
-              <Upload size={22} strokeWidth={1.8} className={styles.uploadIcon} />
-              <span className={styles.uploadText}>
-                Drop files here, or click to browse
-              </span>
-              <span className={styles.uploadHint}>
-                Role descriptions, policies, risk-matrix exports — PDF, DOCX, XLSX
-              </span>
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                style={{ display: "none" }}
-                onChange={(e) => {
-                  if (e.target.files?.length) addFiles(e.target.files);
-                  e.target.value = "";
-                }}
-              />
-            </label>
-            {files.length > 0 && (
-              <ul className={styles.fileList}>
-                {files.map((f, i) => (
-                  <li key={`${f.name}-${i}`} className={styles.fileItem}>
-                    <FileText size={14} strokeWidth={1.8} className={styles.fileIcon} />
-                    <div className={styles.fileMeta}>
-                      <span className={styles.fileName}>{f.name}</span>
-                      <span className={styles.fileSize}>{f.size}</span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setFiles((arr) => arr.filter((_, j) => j !== i))}
-                      className={styles.fileRemove}
-                      aria-label={`Remove ${f.name}`}
-                    >
-                      <X size={12} strokeWidth={2} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
           <div className={styles.footer}>
             <button type="button" className={styles.btnGhost} onClick={handleClose}>
               Cancel
@@ -310,6 +213,8 @@ export default function RequestCourseModal({ open, onClose, onSubmit }) {
             </button>
           </div>
         </form>
+        </>
+        )}
       </div>
     </div>
   );

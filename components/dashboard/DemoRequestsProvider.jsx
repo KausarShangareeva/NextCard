@@ -13,8 +13,10 @@ const DemoRequestsContext = createContext({
 export function DemoRequestsProvider({ children }) {
   const [requests, setRequests] = useState(INITIAL_DEMO_REQUESTS);
 
-  const updateStatus = useCallback((id, status) => {
-    setRequests((rs) => rs.map((r) => (r.id === id ? { ...r, status } : r)));
+  const updateStatus = useCallback((id, status, extras = {}) => {
+    setRequests((rs) =>
+      rs.map((r) => (r.id === id ? { ...r, status, ...extras } : r))
+    );
   }, []);
 
   const getById = useCallback(
