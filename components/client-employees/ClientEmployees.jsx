@@ -112,12 +112,23 @@ export default function ClientEmployees() {
     [employees, selectedIds]
   );
 
+  const selectedUniqueRoles = useMemo(
+    () => Array.from(new Set(selectedEmployees.map((e) => e.role))),
+    [selectedEmployees]
+  );
+
   const selectedRoleSummary = useMemo(() => {
-    const roles = Array.from(new Set(selectedEmployees.map((e) => e.role)));
-    if (roles.length === 0) return "";
-    if (roles.length === 1) return roles[0];
-    return `${roles.length} roles`;
-  }, [selectedEmployees]);
+    if (selectedUniqueRoles.length === 0) return "";
+    if (selectedUniqueRoles.length === 1) return selectedUniqueRoles[0];
+    return `${selectedUniqueRoles.length} roles`;
+  }, [selectedUniqueRoles]);
+
+  // Pre-fill for the Role field in RequestCourseModal: single role once,
+  // multiple roles joined with commas.
+  const selectedRolesText = useMemo(
+    () => selectedUniqueRoles.join(", "),
+    [selectedUniqueRoles]
+  );
 
   const handleRequestSubmit = (data) => {
     addRequest({
@@ -345,6 +356,7 @@ export default function ClientEmployees() {
         open={isRequestOpen}
         onClose={() => setIsRequestOpen(false)}
         onSubmit={handleRequestSubmit}
+        initialRole={selectedRolesText}
       />
     </div>
   );
