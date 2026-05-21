@@ -1,0 +1,520 @@
+/* ─── page ───────────────────────────────────────────────────────────────── */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: var(--ink);
+}
+
+/* ─── header ─────────────────────────────────────────────────────────────── */
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.title {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 6px 0 0;
+}
+
+.sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 8px 0 0;
+}
+
+/* ─── role grid ──────────────────────────────────────────────────────────── */
+
+.gridLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* ─── role card ──────────────────────────────────────────────────────────── */
+
+.card {
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  border-color: var(--line-2);
+  box-shadow: 0 6px 20px -8px rgba(13, 13, 16, 0.1);
+}
+
+.cardSelected {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(13, 13, 16, 0.07);
+}
+
+.cardSelected:hover {
+  border-color: var(--ink);
+}
+
+.cardName {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.cardDesc {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  flex: 1;
+}
+
+/* ─── risk badge ─────────────────────────────────────────────────────────── */
+
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+
+.riskDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.riskCritical            { background: #fdecec; color: #a5302a; }
+.riskCritical .riskDot   { background: #a5302a; }
+.riskHigh                { background: #fdf4e3; color: #8a5a14; }
+.riskHigh .riskDot       { background: #b08739; }
+.riskMedium              { background: #ecf2ff; color: #2342a3; }
+.riskMedium .riskDot     { background: #3454a8; }
+
+/* ─── loading state ──────────────────────────────────────────────────────── */
+
+.loadingBox {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 36px 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--line-2);
+  border-top-color: var(--ink);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.loadingRole {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ─── error state ────────────────────────────────────────────────────────── */
+
+.errorBox {
+  background: #fdecec;
+  border: 1px solid rgba(165, 48, 42, 0.2);
+  border-radius: 18px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.errorTitle {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #a5302a;
+}
+
+.errorDetail {
+  font-size: 12.5px;
+  color: #c04040;
+}
+
+/* ─── plan header ────────────────────────────────────────────────────────── */
+
+.planHead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.planEyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.planTitle {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 4px 0 0;
+}
+
+.planMeta {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* ─── step indicator ─────────────────────────────────────────────────────── */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stepCircle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-2);
+  background: #fff;
+  color: var(--ink-4);
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.stepCircleActive {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.stepCircleDone {
+  background: #e6f5ee;
+  border-color: #2bb673;
+  color: #126b4a;
+}
+
+.stepLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.stepLabelActive {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.stepLabelDone {
+  color: var(--ink-3);
+}
+
+.stepConnector {
+  flex: 1;
+  min-width: 20px;
+  height: 1px;
+  background: var(--line);
+  margin: 0 8px;
+}
+
+/* ─── send to review button ──────────────────────────────────────────────── */
+
+.sendReviewRow {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+.btnSendReview {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btnSendReview:hover {
+  background: #1a1a1f;
+  transform: translateY(-1px);
+}
+
+/* ─── compliance banner ──────────────────────────────────────────────────── */
+
+.complianceBanner {
+  background: #e6f5ee;
+  border: 1px solid rgba(43, 182, 115, 0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bannerIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.bannerText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #126b4a;
+  line-height: 1.4;
+}
+
+.bannerSub {
+  font-size: 12.5px;
+  color: #15784f;
+  margin-top: 2px;
+}
+
+/* ─── summary screen ─────────────────────────────────────────────────────── */
+
+.summaryHead {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.summaryTitle {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 4px 0 0;
+}
+
+.summaryRole {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.summaryStatCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryStatLabel {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.summaryStatValue {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.summaryStatValueGreen  { color: #126b4a; }
+.summaryStatValueBlue   { color: #2342a3; }
+.summaryStatValueRed    { color: #a5302a; }
+
+/* ─── audit table ────────────────────────────────────────────────────────── */
+
+.auditTableHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.auditTableTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.auditTableCount {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.auditTable {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.auditTableRow {
+  display: grid;
+  grid-template-columns: 150px 90px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+}
+
+.auditTableRow:last-child { border-bottom: none; }
+
+.auditTime {
+  color: var(--ink-4);
+  font-size: 11px;
+  font-family: ui-monospace, Menlo, monospace;
+  padding-top: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.auditAction {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+
+.auditApproved { background: #e6f5ee; color: #126b4a; }
+.auditEdited   { background: #ecf2ff; color: #2342a3; }
+.auditRemoved  { background: #fdecec; color: #a5302a; }
+.auditAdded    { background: var(--pill-light); color: var(--ink-2); }
+
+.auditModuleTitle {
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.auditJustification {
+  font-size: 11.5px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* ─── start again ────────────────────────────────────────────────────────── */
+
+.startAgainRow {
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.btnStartAgain {
+  padding: 10px 22px;
+  border-radius: 100px;
+  background: transparent;
+  border: 1.5px solid var(--line-2);
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btnStartAgain:hover {
+  background: var(--pill-light);
+  color: var(--ink);
+}
+
+/* ─── responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .summaryStats { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .steps { flex-wrap: wrap; gap: 8px; }
+  .stepConnector { display: none; }
+  .summaryStats { grid-template-columns: 1fr 1fr; }
+  .auditTableRow { grid-template-columns: 1fr 80px; }
+  .auditTime { display: none; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+  .summaryStats { grid-template-columns: 1fr 1fr; }
+}

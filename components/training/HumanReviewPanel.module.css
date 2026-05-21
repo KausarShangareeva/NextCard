@@ -1,0 +1,624 @@
+/* ─── root ───────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--ink);
+}
+
+/* ─── header ─────────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 4px 0 0;
+}
+
+.sub {
+  font-size: 13.5px;
+  color: var(--ink-3);
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+/* ─── progress ───────────────────────────────────────────────────────────── */
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressLabel {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.progressCount {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  height: 5px;
+  border-radius: 100px;
+  background: var(--pill-light);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #126b4a, #2bb673);
+  transition: width 0.3s ease;
+}
+
+/* ─── module card ────────────────────────────────────────────────────────── */
+
+.moduleCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.moduleCardActioned {
+  border-color: var(--line);
+  opacity: 0.75;
+}
+
+.moduleCardApproved {
+  border-left: 3px solid #2bb673;
+}
+
+.moduleCardEdited {
+  border-left: 3px solid #3454a8;
+}
+
+.moduleBody {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── module meta row ────────────────────────────────────────────────────── */
+
+.moduleMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.quarterBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--pill-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.riskDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.riskCritical { background: #fdecec; color: #a5302a; }
+.riskCritical .riskDot { background: #a5302a; }
+.riskHigh     { background: #fdf4e3; color: #8a5a14; }
+.riskHigh .riskDot { background: #b08739; }
+.riskMedium   { background: #ecf2ff; color: #2342a3; }
+.riskMedium .riskDot { background: #3454a8; }
+.riskLow      { background: #e6f5ee; color: #15784f; }
+.riskLow .riskDot { background: #2bb673; }
+
+.actionedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 10.5px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.actionedApproved { background: #e6f5ee; color: #15784f; }
+.actionedEdited   { background: #ecf2ff; color: #2342a3; }
+.actionedAdded    { background: var(--pill-light); color: var(--ink-2); }
+
+/* ─── module content ─────────────────────────────────────────────────────── */
+
+.moduleTitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.moduleField {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.moduleFieldLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.moduleFieldValue {
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+.articlePill {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--pill-light);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  width: fit-content;
+}
+
+.rationale {
+  padding: 10px 12px;
+  background: #f7f8fa;
+  border-left: 3px solid var(--line-2);
+  border-radius: 0 8px 8px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ─── action buttons ─────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #fafafa;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.btnApprove {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(43, 182, 115, 0.35);
+  background: #e6f5ee;
+  color: #126b4a;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btnApprove:hover:not(:disabled) {
+  background: #d4eddf;
+  transform: translateY(-1px);
+}
+
+.btnEdit {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(52, 84, 168, 0.25);
+  background: #ecf2ff;
+  color: #2342a3;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btnEdit:hover:not(:disabled) {
+  background: #dce8ff;
+  transform: translateY(-1px);
+}
+
+.btnRemove {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid rgba(165, 48, 42, 0.2);
+  background: #fdecec;
+  color: #a5302a;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btnRemove:hover:not(:disabled) {
+  background: #fadddd;
+  transform: translateY(-1px);
+}
+
+.btnAdd {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--line-2);
+  background: #fff;
+  color: var(--ink-2);
+  margin-left: auto;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btnAdd:hover:not(:disabled) {
+  background: var(--pill-light);
+  transform: translateY(-1px);
+}
+
+/* ─── inline edit / remove forms ─────────────────────────────────────────── */
+
+.inlineForm {
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fafafa;
+}
+
+.inlineFormTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fieldLabel {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.fieldInput {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 9px 12px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.fieldInput:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(13, 13, 16, 0.06);
+}
+
+.fieldInput::placeholder {
+  color: var(--ink-4);
+}
+
+.fieldTextarea {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 9px 12px;
+  outline: none;
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.fieldTextarea:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(13, 13, 16, 0.06);
+}
+
+.fieldTextarea::placeholder {
+  color: var(--ink-4);
+}
+
+.fieldSelect {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 9px 12px;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.fieldSelect:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(13, 13, 16, 0.06);
+}
+
+.inlineFormFooter {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btnSave {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btnSave:hover:not(:disabled) { background: #1a1a1f; }
+
+.btnSave:disabled {
+  background: var(--ink-4);
+  cursor: not-allowed;
+}
+
+.btnCancel {
+  padding: 8px 16px;
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btnCancel:hover { background: var(--pill-light); }
+
+/* ─── add module form ────────────────────────────────────────────────────── */
+
+.addForm {
+  background: #fff;
+  border: 1.5px dashed var(--line-2);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.addFormTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.addFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ─── finalise button ────────────────────────────────────────────────────── */
+
+.finaliseRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.finaliseHint {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.btnFinalise {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.btnFinalise:hover:not(:disabled) {
+  background: #1a1a1f;
+  transform: translateY(-1px);
+}
+
+.btnFinalise:disabled {
+  background: var(--ink-4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── audit log ──────────────────────────────────────────────────────────── */
+
+.auditSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auditHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.auditTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.auditCount {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.auditPanel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.auditEmpty {
+  padding: 24px;
+  font-size: 13px;
+  color: var(--ink-4);
+  text-align: center;
+}
+
+.auditRow {
+  display: grid;
+  grid-template-columns: 140px 90px 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+}
+
+.auditRow:last-child { border-bottom: none; }
+
+.auditTime {
+  color: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-family: ui-monospace, Menlo, monospace;
+  padding-top: 1px;
+}
+
+.auditAction {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+
+.auditApproved  { background: #e6f5ee; color: #126b4a; }
+.auditEdited    { background: #ecf2ff; color: #2342a3; }
+.auditRemoved   { background: #fdecec; color: #a5302a; }
+.auditAdded     { background: var(--pill-light); color: var(--ink-2); }
+
+.auditModule {
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.auditJustification {
+  color: var(--ink-3);
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+
+.auditActor {
+  font-size: 11px;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+/* ─── responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .addFormGrid { grid-template-columns: 1fr; }
+  .auditRow { grid-template-columns: 1fr 1fr; }
+  .auditActor { display: none; }
+}

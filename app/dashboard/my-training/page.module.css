@@ -1,0 +1,490 @@
+/* ─── page ───────────────────────────────────────────────────────────────── */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--ink);
+}
+
+/* ─── view-switcher banner ───────────────────────────────────────────────── */
+
+.viewSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  background: var(--pill-light);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+}
+
+.viewSwitcherLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.viewSwitcherIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.viewSwitcherText {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+.switchBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.switchBtn:hover {
+  background: #1a1a1f;
+}
+
+/* ─── employee picker ────────────────────────────────────────────────────── */
+
+.pickerRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pickerLabel {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.pickerSelect {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line-2);
+  border-radius: 10px;
+  padding: 8px 14px;
+  outline: none;
+  cursor: pointer;
+  min-width: 180px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.pickerSelect:focus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(13, 13, 16, 0.06);
+}
+
+/* ─── notification banner ────────────────────────────────────────────────── */
+
+.notifBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 18px;
+  background: #fdf4e3;
+  border: 1px solid rgba(176, 135, 57, 0.3);
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.notifIcon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.notifText {
+  color: #5a3e0a;
+  font-weight: 500;
+}
+
+.notifSub {
+  color: #7a5514;
+}
+
+/* ─── header ─────────────────────────────────────────────────────────────── */
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.title {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 6px 0 0;
+}
+
+.sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 6px 0 0;
+}
+
+/* ─── employee card ──────────────────────────────────────────────────────── */
+
+.employeeCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.employeeLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.employeeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.employeeName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.employeeRole {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.employeeMeta {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* ─── risk badge ─────────────────────────────────────────────────────────── */
+
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.riskDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.riskCritical          { background: #fdecec; color: #a5302a; }
+.riskCritical .riskDot { background: #a5302a; }
+.riskHigh              { background: #fdf4e3; color: #8a5a14; }
+.riskHigh .riskDot     { background: #b08739; }
+
+/* ─── progress card ──────────────────────────────────────────────────────── */
+
+.progressCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.progressTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progressHeading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.progressSub {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+.progressPct {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.progressTrack {
+  height: 8px;
+  border-radius: 100px;
+  background: rgba(13, 13, 16, 0.08);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--navy), #3454a8);
+  transition: width 0.4s ease;
+}
+
+/* ─── quarter section ────────────────────────────────────────────────────── */
+
+.quarterHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.quarterTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.quarterCount {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ─── module list ────────────────────────────────────────────────────────── */
+
+.moduleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moduleCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.moduleCardLocked {
+  background: #fafafa;
+  opacity: 0.7;
+}
+
+/* ─── module content ─────────────────────────────────────────────────────── */
+
+.moduleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.moduleTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.articlePill {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--pill-light);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.statusCompleted  { color: #15784f; }
+.statusInProgress { color: #2342a3; }
+.statusLocked     { color: var(--ink-4); }
+
+.moduleTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.moduleRationale {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.rationaleLabel {
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ─── module action ──────────────────────────────────────────────────────── */
+
+.moduleAction {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btnStart {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: var(--pill-dark);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btnStart:hover {
+  background: #1a1a1f;
+}
+
+.btnReview {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: #e6f5ee;
+  color: #126b4a;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid rgba(43, 182, 115, 0.3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.btnReview:hover {
+  background: #d4eddf;
+}
+
+.lockedHint {
+  font-size: 11px;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+/* ─── no-plan state ──────────────────────────────────────────────────────── */
+
+.noPlanCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.noPlanIcon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.noPlanTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.noPlanSub {
+  font-size: 14px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  max-width: 420px;
+}
+
+/* ─── responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .moduleCard {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .employeeCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

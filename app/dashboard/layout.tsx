@@ -4,6 +4,9 @@ import {
   Building2,
   BookOpen,
   Settings,
+  BrainCircuit,
+  GraduationCap,
+  ClipboardList,
 } from "lucide-react";
 import DashboardGate from "@/components/dashboard/DashboardGate";
 import DashboardShell from "@/components/dashboard-shell/DashboardShell";
@@ -14,10 +17,13 @@ import DemoRequestsBadge from "@/components/dashboard/DemoRequestsBadge";
 const ICON = { size: 16, strokeWidth: 1.8 };
 
 const NAV_ITEMS = [
-  { label: "Overview", href: "/dashboard",          icon: <LayoutGrid {...ICON} /> },
-  { label: "Inbox",    href: "/dashboard/inbox",    icon: <Inbox      {...ICON} />, badge: <DemoRequestsBadge /> },
-  { label: "Clients",  href: "/dashboard/clients",  icon: <Building2  {...ICON} /> },
-  { label: "Courses",  href: "/dashboard/courses",  icon: <BookOpen   {...ICON} /> },
+  { label: "Overview",          href: "/dashboard",                    icon: <LayoutGrid  {...ICON} /> },
+  { label: "Inbox",             href: "/dashboard/inbox",              icon: <Inbox       {...ICON} />, badge: <DemoRequestsBadge /> },
+  { label: "Clients",           href: "/dashboard/clients",            icon: <Building2   {...ICON} /> },
+  { label: "Courses",           href: "/dashboard/courses",            icon: <BookOpen    {...ICON} /> },
+  { label: "Training Pipeline", href: "/dashboard/training-pipeline",  icon: <BrainCircuit   {...ICON} /> },
+  { label: "LMS",               href: "/dashboard/lms",               icon: <GraduationCap  {...ICON} /> },
+  { label: "My Training",       href: "/dashboard/my-training",       icon: <ClipboardList  {...ICON} /> },
 ];
 
 const NAV_FOOTER = [

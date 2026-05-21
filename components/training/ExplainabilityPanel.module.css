@@ -1,0 +1,184 @@
+/* ─── wrapper ─────────────────────────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  color: var(--ink);
+}
+
+/* ─── quarter section ─────────────────────────────────────────────────────── */
+
+.quarter {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quarterHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.quarterLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.quarterName {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.quarterCount {
+  font-size: 12px;
+  color: var(--ink-4);
+  margin-left: auto;
+}
+
+.moduleList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+
+/* ─── module card ─────────────────────────────────────────────────────────── */
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── chain steps ─────────────────────────────────────────────────────────── */
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stepLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.stepValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+/* risk badge colours — derived from level extracted out of riskDimension */
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.riskDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.riskCritical { background: #fdecec; color: #a5302a; }
+.riskCritical .riskDot { background: #a5302a; }
+
+.riskHigh     { background: #fdf4e3; color: #8a5a14; }
+.riskHigh .riskDot { background: #b08739; }
+
+.riskMedium   { background: #ecf2ff; color: #2342a3; }
+.riskMedium .riskDot { background: #3454a8; }
+
+.riskLow      { background: #e6f5ee; color: #15784f; }
+.riskLow .riskDot { background: #2bb673; }
+
+.articlePill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--pill-light);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-2);
+  width: fit-content;
+}
+
+/* ─── arrow connector ─────────────────────────────────────────────────────── */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  padding: 5px 0 5px 2px;
+  color: var(--ink-4);
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ─── module title row ────────────────────────────────────────────────────── */
+
+.moduleTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+/* ─── rationale box ───────────────────────────────────────────────────────── */
+
+.rationale {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: #f7f8fa;
+  border-left: 3px solid var(--line-2);
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rationaleLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.rationaleText {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ─── responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .moduleList {
+    grid-template-columns: 1fr;
+  }
+}

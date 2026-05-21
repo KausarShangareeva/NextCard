@@ -14,6 +14,7 @@ export const TEAM_MEMBERS = [
   { key: "salim-2026",   slug: "salim",   name: "Salim",   role: "AI search",   photo: "/team/salim.jpg"   },
   { key: "aakash-2026",  slug: "aakash",  name: "Aakash",  role: "AI Engineer", photo: "/team/aakash.jpg"  },
   { key: "shansa-2026",  slug: "shansa",  name: "Shansa",  role: "Senior Dev",  photo: "/team/shansa.jpg"  },
+  { key: "vidda-demo",   slug: "demo",    name: "Demo",    role: "Judge / Evaluator", photo: "" },
 ];
 
 const TeamAuthContext = createContext({ user: null, signOut: () => {} });
